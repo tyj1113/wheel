@@ -1,5 +1,4 @@
 node_modules/
-workspace.xml/
 .cache/
 dist/
-.idea/workspace.xml/
+.idea/
