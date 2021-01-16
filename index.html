@@ -5,14 +5,15 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>wheel</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        :root{
+
+        :root {
             --button-height: 32px;
             --font-size: 14px;
             --button-bg: white;
@@ -22,22 +23,29 @@
             --border-color: #999;
             --border-color-hover: #666;
         }
-        #app{
+
+        #app {
             margin: 20px;
+        }
+
+        body {
+            font-size: var(--font-size);
         }
 
     </style>
 </head>
-
-
 <body>
 <div id="app">
-<t-button/>
+    <t-button @click="loading1=!loading1" :loading="loading1" icon="edit">按钮</t-button>
+    <t-button @click="loading2=!loading2" :loading="loading2" icon="edit" icon-position="right">按钮</t-button>
+    <t-button @click="loading3=!loading3" :loading="loading3">按钮</t-button>
+    <t-button-group>
+        <t-button icon="left">上一页</t-button>
+        <t-button>更多</t-button>
+        <t-button icon="right" icon-position="right">下一页</t-button>
+    </t-button-group>
 </div>
-
-<script>
-
-</script>
 <script src="./src/app.js"></script>
+<script src="//at.alicdn.com/t/font_2329837_s4m9efwngj.js"></script>
 </body>
 </html>
