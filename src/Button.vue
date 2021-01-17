@@ -10,8 +10,12 @@
 </template>
 
 <script>
+import Icon from './Icon.vue'
 export default {
   name: "Button",
+  components:{
+    't-icon':Icon
+  },
   props:
       {
         icon: {},

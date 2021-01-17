@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "一个UI框架",
   "main": "index.js",
+  "scripts": {
+    "dev-test": "concurrently \"parcel watch test/* --no-cache\" \"karma start\" ",
+    "test": "parcel build test/* --no-minify && karma start --single-run"
+  },
   "repository": "git@github.com:tyj1113/wheel.git",
   "author": "tyj1113 <1991383016@qq.com>",
   "license": "MIT",
@@ -18,5 +22,16 @@
     "vue": "^2.6.12",
     "vue-hot-reload-api": "^2.3.4",
     "vue-template-compiler": "^2.6.12"
+  },
+  "devDependencies": {
+    "karma": "^6.0.0",
+    "karma-chai": "^0.1.0",
+    "karma-chai-spies": "^0.1.4",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-mocha": "^2.0.1",
+    "karma-sinon-chai": "^2.0.2",
+    "mocha": "^8.2.1",
+    "sinon": "^9.2.3",
+    "sinon-chai": "^3.5.0"
   }
 }
