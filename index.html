@@ -36,15 +36,23 @@
 </head>
 <body>
 <div id="app">
-    <t-button @click="loading1=!loading1" :loading="loading1" icon="edit">按钮</t-button>
-    <t-button @click="loading2=!loading2" :loading="loading2" icon="edit" icon-position="right">按钮</t-button>
-    <t-button @click="loading3=!loading3" :loading="loading3">按钮</t-button>
-    <t-button-group>
-        <t-button icon="left">上一页</t-button>
-        <t-button>更多</t-button>
-        <t-button icon="right" icon-position="right">下一页</t-button>
-    </t-button-group>
-    <div id="text"></div>
+    <t-input value="张三" disabled></t-input>
+    <br><br>
+    <t-input value="张三" readonly></t-input>
+    <br><br>
+    <t-input value="李四"></t-input>
+    <br><br>
+    <t-input value="王五" error="违规"></t-input>
+
+<!--    <t-button @click="loading1=!loading1" :loading="loading1" icon="edit">按钮</t-button>-->
+<!--    <t-button @click="loading2=!loading2" :loading="loading2" icon="edit" icon-position="right">按钮</t-button>-->
+<!--    <t-button @click="loading3=!loading3" :loading="loading3">按钮</t-button>-->
+<!--    <t-button-group>-->
+<!--        <t-button icon="left">上一页</t-button>-->
+<!--        <t-button>更多</t-button>-->
+<!--        <t-button icon="right" icon-position="right">下一页</t-button>-->
+<!--    </t-button-group>-->
+
 </div>
 <script src="./src/app.js"></script>
 </body>
