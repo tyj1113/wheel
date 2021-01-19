@@ -16,5 +16,6 @@ new Vue({
         loading1:false,
         loading2:false,
         loading3:false,
+        message:'hi',
     }
 })
