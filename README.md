@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/tyj1113/wheel.svg?branch=master)](https://travis-ci.org/tyj1113/wheel)
 
-##介绍
+## 介绍
 
 这是我在学习Vue的过程中做的一个UI框架,希望对你有用
 
-##开始使用
+## 开始使用
 
 1.添加 CSS 样式 使用本框架前，请在 CSS 中开启 border-box
 
@@ -45,8 +45,8 @@ components: {
 }
 }
 
-##文档
-##提问
-##变更记录
-##联系方式
-##贡献代码
+## 文档
+## 提问
+## 变更记录
+## 联系方式
+## 贡献代码
