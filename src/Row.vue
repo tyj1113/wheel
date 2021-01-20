@@ -1,29 +1,53 @@
 <template>
-  <div class="row" :style="{marginLeft:-gutter/2+'px',marginRight:-gutter/2+'px'}">
-<slot></slot>
+  <div class="row" :style="rowStyle" :class="rowClass">
+    <slot></slot>
   </div>
 </template>
 
-<script >
+<script>
 export default {
-name: "Row",
-  props:{
-    gutter:{
-      type:[String,Number]
-}
+  name: "Row",
+  props: {
+    gutter: {
+      type: [String, Number]
+    },
+    align: {
+      type: String,
+      validator (value) {
+        return ['left', 'right', 'center'].includes(value)
+      }
+    }
+  },
+  computed: {
+    rowStyle() {
+      let {gutter} = this;
+      return {marginLeft: -gutter / 2 + 'px', marginRight: -gutter / 2 + 'px'}
+    },
+    rowClass(){
+      let {align}=this
+      return {[`align-${align}`]:align}
+    }
   },
   mounted() {
-  console.log(this.gutter)
-    this.$children.forEach(vm=>{
-      console.log(vm)
-      vm.gutter=this.gutter
+    this.$children.forEach(vm => {
+      vm.gutter = this.gutter
     })
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.row{
+.row {
   display: flex;
+  &.align-left {
+    justify-content: flex-start;
+  }
+  &.align-right {
+    justify-content: flex-end;
+  }
+  &.align-center {
+    justify-content: center;
+  }
 }
+
 </style>
