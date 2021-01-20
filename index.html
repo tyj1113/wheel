@@ -36,13 +36,47 @@
 </head>
 <body>
 <div id="app">
-    <t-input value="张三" disabled></t-input>
-    <br><br>
-    <t-input value="张三" readonly></t-input>
-    <br><br>
-    <t-input v-model="message"></t-input>
-    <br><br>
-    <t-input value="王五" error="违规"></t-input>
+    <t-row>
+        <t-col ></t-col>
+        <t-col offset="8"></t-col>
+    </t-row>
+    <t-row>
+        <t-col ></t-col>
+        <t-col ></t-col>
+        <t-col ></t-col>
+    </t-row>
+    <div style="border: 1px solid black">
+<!--        模拟页面容器-->
+        <t-row gutter="20">
+            <t-col ></t-col>
+            <t-col ></t-col>
+            <t-col ></t-col>
+            <t-col ></t-col>
+        </t-row>
+    </div>
+
+    <t-row>
+        <t-col span="2"></t-col>
+        <t-col span="22"></t-col>
+    </t-row>
+    <t-row gutter="20">
+        <t-col span="2"></t-col>
+        <t-col span="20" offset="2"></t-col>
+    </t-row>
+    <t-row gutter="20">
+        <t-col span="4"></t-col>
+        <t-col span="20" ></t-col>
+    </t-row>
+
+
+
+<!--    <t-input value="张三" disabled></t-input>-->
+<!--    <br><br>-->
+<!--    <t-input value="张三" readonly></t-input>-->
+<!--    <br><br>-->
+<!--    <t-input v-model="message"></t-input>-->
+<!--    <br><br>-->
+<!--    <t-input value="王五" error="违规"></t-input>-->
 
 <!--    <t-button @click="loading1=!loading1" :loading="loading1" icon="edit">按钮</t-button>-->
 <!--    <t-button @click="loading2=!loading2" :loading="loading2" icon="edit" icon-position="right">按钮</t-button>-->
