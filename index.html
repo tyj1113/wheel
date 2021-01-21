@@ -36,37 +36,45 @@
 </head>
 <body>
 <div id="app">
-    <t-row>
-        <t-col ></t-col>
-        <t-col offset="8"></t-col>
-    </t-row>
-    <t-row>
-        <t-col ></t-col>
-        <t-col ></t-col>
-        <t-col ></t-col>
-    </t-row>
-    <div style="border: 1px solid black">
-<!--        模拟页面容器-->
-        <t-row gutter="20">
-            <t-col ></t-col>
-            <t-col ></t-col>
-            <t-col ></t-col>
-            <t-col ></t-col>
-        </t-row>
-    </div>
 
-    <t-row>
-        <t-col span="2"></t-col>
-        <t-col span="22"></t-col>
-    </t-row>
-    <t-row gutter="20">
-        <t-col span="2"></t-col>
-        <t-col span="20" offset="2"></t-col>
-    </t-row>
-    <t-row gutter="20">
-        <t-col span="4"></t-col>
-        <t-col span="20" ></t-col>
-    </t-row>
+        <t-row>
+            <t-col :xs="{span:1}" :sm="{span:2}" :md="{span:3}" :lg="{span:11}">12</t-col>
+            <t-col offset="10" :xs="{span:22,offset:1}" :sm="{span:20,offset:2}" :md="{span:18,offset:3}" :lg="{span:12,offset:1}">12</t-col>
+
+        </t-row>
+
+
+<!--    <t-row>-->
+<!--        <t-col ></t-col>-->
+<!--        <t-col offset="8"></t-col>-->
+<!--    </t-row>-->
+<!--    <t-row>-->
+<!--        <t-col ></t-col>-->
+<!--        <t-col ></t-col>-->
+<!--        <t-col ></t-col>-->
+<!--    </t-row>-->
+<!--    <div style="border: 1px solid black">-->
+<!--&lt;!&ndash;        模拟页面容器&ndash;&gt;-->
+<!--        <t-row gutter="20">-->
+<!--            <t-col ></t-col>-->
+<!--            <t-col ></t-col>-->
+<!--            <t-col ></t-col>-->
+<!--            <t-col ></t-col>-->
+<!--        </t-row>-->
+<!--    </div>-->
+
+<!--    <t-row>-->
+<!--        <t-col span="2"></t-col>-->
+<!--        <t-col span="22"></t-col>-->
+<!--    </t-row>-->
+<!--    <t-row gutter="20">-->
+<!--        <t-col span="2"></t-col>-->
+<!--        <t-col span="20" offset="2"></t-col>-->
+<!--    </t-row>-->
+<!--    <t-row gutter="20">-->
+<!--        <t-col span="4"></t-col>-->
+<!--        <t-col span="20" ></t-col>-->
+<!--    </t-row>-->
 
 
 
