@@ -5,6 +5,16 @@
 </template>
 
 <script>
+let validator=function(value) {
+  let keys = Object.keys(value), valid = true
+  keys.forEach(item => {
+    if (!['span', 'offset'].includes(item)) {
+      valid = false
+    }
+  })
+  return valid
+}
+
 export default {
   name: "Col",
   data() {
@@ -19,87 +29,33 @@ export default {
     offset: {
       type: [Number, String]
     },
-    xs: {
-      type: Object,
-      validate(value) {
-        let keys = Object.keys(value), valid = true
-        keys.forEach(item => {
-          if (!['span', 'offset'].includes(item)) {
-            valid = false
-          }
-        })
-        return valid
-      }
-    },
     sm: {
       type: Object,
-      validate(value) {
-        let keys = Object.keys(value), valid = true
-        keys.forEach(item => {
-          if (!['span', 'offset'].includes(item)) {
-            valid = false
-          }
-        })
-        return valid
-      }
+      validator
     },
     md: {
       type: Object,
-      validate(value) {
-        let keys = Object.keys(value), valid = true
-        keys.forEach(item => {
-          if (!['span', 'offset'].includes(item)) {
-            valid = false
-          }
-        })
-        return valid
-      }
+      validator
     },
     lg: {
       type: Object,
-      validate(value) {
-        let keys = Object.keys(value), valid = true
-        keys.forEach(item => {
-          if (!['span', 'offset'].includes(item)) {
-            valid = false
-          }
-        })
-        return valid
-      }
+      validator
     },
     xl: {
       type: Object,
-      validate(value) {
-        let keys = Object.keys(value), valid = true
-        keys.forEach(item => {
-          if (!['span', 'offset'].includes(item)) {
-            valid = false
-          }
-        })
-        return valid
-      }
+      validator
     },
     xxl: {
       type: Object,
-      validate(value) {
-        let keys = Object.keys(value), valid = true
-        keys.forEach(item => {
-          if (!['span', 'offset'].includes(item)) {
-            valid = false
-          }
-        })
-        return valid
-      }
+      validator
     }
   },
   computed: {
     colClass() {
-      let {span, offset, xs, sm, md, lg, xl, xxl} = this
+      let {span, offset, sm, md, lg, xl, xxl} = this
       return [
         span && `col-${span}`,
         offset && `offset-${offset}`,
-        xs && xs.span && `xs-col-${xs.span}`,
-        xs && xs.offset && `xs-offset-${xs.offset}`,
         sm && sm.span && `sm-col-${sm.span}`,
         sm && sm.offset && `sm-offset-${sm.offset}`,
         md && md.span && `md-col-${md.span}`,
@@ -142,20 +98,6 @@ $class-prefix: offset-;
   }
 }
 
-@media (max-width: 575px) {
-  $class-prefix: xs-col-;
-  @for $n from 1 through 24 {
-    &.#{$class-prefix}#{$n} {
-      width: ($n/24)*100%
-    }
-  }
-  $class-prefix: xs-offset-;
-  @for $n from 1 through 24 {
-    &.#{$class-prefix}#{$n} {
-      margin-left: ($n/24)*100%
-    }
-  }
-}
 
 @media (min-width: 576px) {
   $class-prefix: sm-col-;
