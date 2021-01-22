@@ -5,6 +5,11 @@ import Buttongroup from './Button-group.vue'
 import Input from "./Input";
 import Row from "./Row";
 import Col from "./Col";
+import Container from "./Container";
+import Aside from "./Aside";
+import Footer from "./Footer";
+import Main from "./Main";
+import Header from "./Header";
 
 
 Vue.component('t-button',Button)
@@ -13,6 +18,11 @@ Vue.component('t-button-group',Buttongroup)
 Vue.component('t-input',Input)
 Vue.component('t-row',Row)
 Vue.component('t-col',Col)
+Vue.component('t-container',Container)
+Vue.component('t-aside',Aside)
+Vue.component('t-header',Header)
+Vue.component('t-footer',Footer)
+Vue.component('t-main',Main)
 
 
 new Vue({

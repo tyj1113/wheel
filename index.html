@@ -37,11 +37,20 @@
 <body>
 <div id="app">
 
-        <t-row>
-            <t-col span="7" :sm="{span:2}" :md="{span:3}" :lg="{span:11}">12</t-col>
-            <t-col offset="10" span="7" :sm="{span:20,offset:2}" :md="{span:18,offset:3}" :lg="{span:12,offset:1}">12</t-col>
+    <t-container style="height:100vh">
+        <t-aside>aside</t-aside>
+        <t-container>
+            <t-header>header</t-header>
+            <t-main>main</t-main>
+            <t-footer>footer</t-footer>
+        </t-container>
 
-        </t-row>
+    </t-container>
+<!--        <t-row>-->
+<!--            <t-col span="7" :sm="{span:2}" :md="{span:3}" :lg="{span:11}">12</t-col>-->
+<!--            <t-col offset="10" span="7" :sm="{span:20,offset:2}" :md="{span:18,offset:3}" :lg="{span:12,offset:1}">12</t-col>-->
+
+<!--        </t-row>-->
 
 
 <!--    <t-row>-->
