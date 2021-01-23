@@ -7,7 +7,7 @@
       </div>
       <div class="line" ref="line"></div>
       <div v-if="closeButton" class="close" @click="clickClose">
-        {{ closeButton.test }}
+        {{ closeButton.text }}
       </div>
     </div>
   </div>
@@ -19,12 +19,11 @@ export default {
   name: "Toast",
   props: {
     autoClose: {
-      type: Boolean,
-      default: true
-    },
-    autoCloseDelay: {
-      type: Number,
-      default: 5
+      type: [Boolean, Number],
+      default: 5,
+      validator (value) {
+        return value === false || typeof value === 'number';
+      }
     },
     closeButton: {
       type: Object,
@@ -60,7 +59,7 @@ export default {
       if (this.autoClose) {
         setTimeout(() => {
           this.close()
-        }, this.autoCloseDelay * 1000)
+        }, this.autoClose * 1000)
       }
     },
     getHeight() {
