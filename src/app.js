@@ -43,7 +43,8 @@ new Vue({
                     console.log(111)
                     }
                 },
-                enableHtml:true
+                enableHtml:true,
+                autoClose:false
             })
         },
         showToast2(){

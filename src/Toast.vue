@@ -35,11 +35,11 @@ export default {
       type: Boolean,
       default: false
     },
-    position:{
-      type:String,
-      default:'top',
-      validator(value){
-        return ['top','middle','bottom'].indexOf(value)!==-1
+    position: {
+      type: String,
+      default: 'top',
+      validator(value) {
+        return ['top', 'middle', 'bottom'].indexOf(value) !== -1
       }
     }
   },
@@ -47,9 +47,9 @@ export default {
     this.getHeight()
     this.execAutoClose()
   },
-  computed:{
-    toastClass(){
-      return {[`position-${this.position}`]:this.position}
+  computed: {
+    toastClass() {
+      return {[`position-${this.position}`]: this.position}
     }
   },
   methods: {
@@ -67,6 +67,7 @@ export default {
     },
     close() {
       this.$el.remove()
+      this.$emit('close')
       this.$destroy()
     },
     test() {
@@ -99,25 +100,31 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   border-radius: 4px;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.50);
   padding: 0 16px;
-  &.position-top{
+
+  &.position-top {
     top: 0;
     transform: translateX(-50%);
   }
-  &.position-middle{
-    top:50%;
-    transform: translate(-50%,-50%);
+
+  &.position-middle {
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
-  &.position-bottom{
+
+  &.position-bottom {
     bottom: 0;
     transform: translateX(-50%);
   }
+
   .message {
     padding: 8px 0;
   }
+
   .close {
     padding-left: 16px;
     flex-shrink: 0;
   }
+
   .line {
     height: 100%;
     border-left: 1px solid white;

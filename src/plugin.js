@@ -7,6 +7,9 @@ function createToast({Vue,message,propsData}){
     })
     toast.$slots.default=[message]
     toast.$mount()
+    toast.$on('close',()=>{
+        currentToast=null
+    })
     document.body.appendChild(toast.$el)
     return toast
 }
