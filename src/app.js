@@ -38,7 +38,7 @@ new Vue({
         showToast1(){
             this.$toast('message',{
                 closeButton:{
-                test:'X',
+                text:'X',
                     callback(){
                     console.log(111)
                     }
@@ -50,7 +50,7 @@ new Vue({
         showToast2(){
             this.$toast('message',{
                 closeButton:{
-                    test:'XX',
+                    text:'XX',
                     callback(toast){
                         toast.test()
                     }
@@ -61,7 +61,7 @@ new Vue({
         showToast3(){
             this.$toast('<strong>加粗</strong>',{
                 closeButton:{
-                    test:'XXX',
+                    text:'XXX',
                     callback(toast){
                         toast.test()
                     }

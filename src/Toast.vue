@@ -6,7 +6,7 @@
         <div v-else v-html="$slots.default[0]"></div>
       </div>
       <div class="line" ref="line"></div>
-      <div v-if="closeButton" class="close" @click="clickClose">
+      <div  class="close" @click="clickClose">
         {{ closeButton.text }}
       </div>
     </div>
