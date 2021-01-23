@@ -10,6 +10,7 @@ import Aside from "./Aside";
 import Footer from "./Footer";
 import Main from "./Main";
 import Header from "./Header";
+import plugin from "./plugin";
 
 
 Vue.component('t-button',Button)
@@ -23,7 +24,7 @@ Vue.component('t-aside',Aside)
 Vue.component('t-header',Header)
 Vue.component('t-footer',Footer)
 Vue.component('t-main',Main)
-
+Vue.use(plugin)
 
 new Vue({
     el:'#app',
@@ -32,5 +33,37 @@ new Vue({
         loading2:false,
         loading3:false,
         message:'hi',
+    },
+    methods: {
+        showToast1(){
+            this.$toast('message',{
+                closeButton:{
+                test:'X',
+                    callback(){
+                    console.log(111)
+                    }
+                },
+                enableHtml:true
+            })
+        },
+        showToast2(){
+            this.$toast('message',{closeButton:{
+                    test:'XX',
+                    callback(toast){
+                        toast.test()
+                    }
+                }})
+        },
+        showToast3(){
+            this.$toast('<strong>加粗</strong>',{
+                closeButton:{
+                    test:'XXX',
+                    callback(toast){
+                        toast.test()
+                    }
+                },
+                enableHtml: true
+            })
+        }
     }
 })
