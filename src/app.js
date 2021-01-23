@@ -47,12 +47,15 @@ new Vue({
             })
         },
         showToast2(){
-            this.$toast('message',{closeButton:{
+            this.$toast('message',{
+                closeButton:{
                     test:'XX',
                     callback(toast){
                         toast.test()
                     }
-                }})
+                },
+                position:'middle'
+            })
         },
         showToast3(){
             this.$toast('<strong>加粗</strong>',{
@@ -62,7 +65,8 @@ new Vue({
                         toast.test()
                     }
                 },
-                enableHtml: true
+                enableHtml: true,
+                position:'bottom'
             })
         }
     }
