@@ -11,7 +11,11 @@ import Footer from "./Footer";
 import Main from "./Main";
 import Header from "./Header";
 import plugin from "./plugin";
-
+import Tabs from './Tabs'
+import TabsHead from './Tabs-head'
+import TabsBody from './Tabs-body'
+import TabsItem from './Tabs-item'
+import TabsPane from './Tabs-pane'
 
 Vue.component('t-button',Button)
 Vue.component('t-icon',Icon)
@@ -25,6 +29,11 @@ Vue.component('t-header',Header)
 Vue.component('t-footer',Footer)
 Vue.component('t-main',Main)
 Vue.use(plugin)
+Vue.component('t-tabs', Tabs)
+Vue.component('t-tabs-head', TabsHead)
+Vue.component('t-tabs-body', TabsBody)
+Vue.component('t-tabs-item', TabsItem)
+Vue.component('t-tabs-pane', TabsPane)
 
 new Vue({
     el:'#app',
@@ -33,6 +42,7 @@ new Vue({
         loading2:false,
         loading3:false,
         message:'hi',
+        selectedTab: 'sports'
     },
     methods: {
         showToast1(){

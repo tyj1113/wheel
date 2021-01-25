@@ -35,9 +35,34 @@
 </head>
 <body>
 <div id="app">
-    <button @click="showToast1">aaa</button>
-    <button @click="showToast2">aaa</button>
-    <button @click="showToast3">aaa</button>
+    <t-tabs >
+        <t-tabs-head>
+            <template slot="actions">
+                <button>设置</button>
+            </template>
+            <t-tabs-item name="tv" disabled>
+                <t-icon name="setting"></t-icon>
+                影视
+            </t-tabs-item>
+            <t-tabs-item name="live">
+                生活
+            </t-tabs-item>
+            <t-tabs-item name="game">
+                游戏
+            </t-tabs-item>
+        </t-tabs-head>
+        <t-tabs-body>
+            <t-tabs-pane name="tv">
+                影视相关资讯
+            </t-tabs-pane>
+            <t-tabs-pane name="live">
+                生活相关资讯
+            </t-tabs-pane>
+            <t-tabs-pane name="game">
+                游戏相关资讯
+            </t-tabs-pane>
+        </t-tabs-body>
+    </t-tabs>
 </div>
 <script src="./src/app.js"></script>
 </body>
