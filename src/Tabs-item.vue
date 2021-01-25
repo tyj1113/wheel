@@ -30,13 +30,15 @@ export default {
   },
   methods:{
     onClick(){
-      this.eventHub.$emit('update:selected',this.name)
+      if(this.disabled)return
+      this.eventHub.$emit('update:selected',this.name,this)
     }
   },
   computed:{
     classes(){
       return {
-        active: this.active
+        active: this.active,
+        disabled: this.disabled
       }
     }
   }
@@ -53,6 +55,10 @@ export default {
   &.active{
     color: blue;
     font-weight: bold;
+  }
+  &.disabled {
+    color: grey;
+    cursor: not-allowed;
   }
 }
 </style>
