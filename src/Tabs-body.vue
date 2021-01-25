@@ -6,7 +6,8 @@
 
 <script >
 export default {
-  name: 'Tabs-body'
+  name: 'Tabs-body',
+  inject:['eventHub']
 };
 </script>
 

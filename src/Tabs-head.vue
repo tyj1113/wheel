@@ -10,7 +10,8 @@
 
 <script >
 export default {
-name: "Tabs-header"
+name: "Tabs-header",
+  inject:['eventHub']
 }
 </script>
 
@@ -19,7 +20,6 @@ name: "Tabs-header"
   display: flex;
   height: 40px;
   border-bottom: 1px solid #ddd;
-
   >.actions{
     margin-left: auto;
     display: flex;

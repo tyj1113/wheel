@@ -42,7 +42,7 @@ new Vue({
         loading2:false,
         loading3:false,
         message:'hi',
-        selectedTab: 'sports'
+        selectedTab: 'game'
     },
     methods: {
         showToast1(){
