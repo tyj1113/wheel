@@ -144,6 +144,7 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   $animation-duration: 500ms;
   .message {
     padding: 8px 0;
+    word-break:break-word;
   }
 
   .close {
