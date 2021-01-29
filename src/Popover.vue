@@ -1,5 +1,5 @@
 <template>
-  <div class="popover" @click="onClick">
+  <div class="popover" ref="popover">
     <div class="content-wrapper" v-if="visible" ref="contentWrapper" :class="classes">
       <slot name="content"></slot>
     </div>
@@ -14,7 +14,8 @@ export default {
   name: "Popover",
   data() {
     return {
-      visible: false
+      visible: false,
+      timer: null
     }
   },
   props: {
@@ -24,11 +25,26 @@ export default {
       validator(value) {
         return ['top', 'bottom', 'left', 'right'].indexOf(value) !== -1
       }
+    },
+    trigger: {
+      type: String,
+      default: 'click',
+      validator(value) {
+        return ['click', 'hover'].indexOf(value) >= 0
+      }
     }
   },
   computed: {
     classes() {
       return {[`position-${this.position}`]: this.position}
+    }
+  },
+  mounted() {
+    if (this.trigger === 'click') {
+      this.$refs.popover.addEventListener('click', this.onClick)
+    } else {
+      this.$refs.popover.addEventListener('mouseenter', this.open)
+      this.$refs.popover.addEventListener('mouseleave', this.close)
     }
   },
   methods: {
@@ -60,16 +76,26 @@ export default {
       if (this.$refs.triggerWrapper && this.$refs.triggerWrapper.contains(event.target)) {
         return
       }
-      this.close()
+      clearTimeout(this.timer)
+      this.visible = false
+      document.removeEventListener('click', this.documentClick)
     },
     open() {
+      clearTimeout(this.timer)
       this.visible = true
       this.getPosition()
       document.addEventListener('click', this.documentClick)
     },
     close() {
-      this.visible = false
-      document.removeEventListener('click', this.documentClick)
+      if (this.trigger === 'hover') {
+        this.timer = setTimeout(() => {
+          this.visible = false
+          document.removeEventListener('click', this.documentClick)
+        }, 1500)
+      } else {
+        this.visible = false
+        document.removeEventListener('click', this.documentClick)
+      }
     },
 
     onClick() {
