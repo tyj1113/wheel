@@ -1,6 +1,6 @@
 <template>
-  <div class="popover" @click.stop="onClick">
-    <div class="content-wrapper" v-if="visible" @click.stop="" ref="contentWrapper">
+  <div class="popover" @click="onClick">
+    <div class="content-wrapper" v-if="visible"  ref="contentWrapper">
       <slot name="content"></slot>
     </div>
     <div ref="triggerWrapper">
@@ -20,6 +20,12 @@ export default {
   methods: {
     onClick() {
       this.visible = !this.visible
+      let documentClick = (event) => {
+        if(this.$refs.contentWrapper && this.$refs.contentWrapper.contains(event.target) ){return}
+        if(this.$refs.triggerWrapper && this.$refs.triggerWrapper.contains(event.target)){return}
+        this.visible = false
+        document.removeEventListener('click', documentClick)
+      }
       if (this.visible === true) {
         this.$nextTick(() => {
           const {top, left} = this.$refs.triggerWrapper.getBoundingClientRect()
@@ -28,11 +34,9 @@ export default {
           this.$refs.contentWrapper.style.top = top+window.scrollY+'px'
           this.$refs.contentWrapper.style.left = left+window.scrollX+'px'
         })
-        let documentClick = () => {
-          this.visible = false
-          document.removeEventListener('click', documentClick)
-        }
         document.addEventListener('click', documentClick)
+      }else{
+        document.removeEventListener('click', documentClick)
       }
     }
   }
@@ -42,8 +46,6 @@ export default {
 <style lang="scss" scoped>
 .popover {
   display: inline-block;
-  //vertical-align: top;
-  //position: relative;
 }
 
 .content-wrapper {
