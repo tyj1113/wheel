@@ -25,8 +25,8 @@ export default {
           const {top, left} = this.$refs.triggerWrapper.getBoundingClientRect()
           const content=this.$refs.contentWrapper
           document.body.appendChild(content)
-          this.$refs.contentWrapper.style.top = top+'px'
-          this.$refs.contentWrapper.style.left = left+'px'
+          this.$refs.contentWrapper.style.top = top+window.scrollY+'px'
+          this.$refs.contentWrapper.style.left = left+window.scrollX+'px'
         })
         let documentClick = () => {
           this.visible = false
