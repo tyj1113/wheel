@@ -36,7 +36,7 @@
 <body>
 <div id="app">
     <div style="width: 200px;height: 200px;border:1px solid #ccc"></div>
-    <div @click="fatherClick" style="border:1px solid green">
+    <div @click="fatherClick" style="border:1px solid green;overflow: hidden;padding: 5px;">
         <t-popover>
             <template slot="content">
                 我出来了
@@ -51,7 +51,7 @@
         </t-popover>
     </div>
 
-    
+
 </div>
 <script src="./src/app.js"></script>
 </body>

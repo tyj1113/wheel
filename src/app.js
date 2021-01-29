@@ -81,6 +81,9 @@ new Vue({
                 enableHtml: true,
                 position:'bottom'
             })
+        },
+        fatherClick(){
+            console.log('父容器')
         }
     }
 })
