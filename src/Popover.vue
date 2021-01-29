@@ -60,8 +60,35 @@ export default {
 .content-wrapper {
   position: absolute;
   transform: translateY(-100%);
-  border: 1px solid red;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  border: 1px solid #ccc;
+  border-radius:4px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
   background: white;
+  padding: .5em 1em;
+  max-width: 20em;
+  word-break: break-word;
+  margin-top: -10px;
+  &::before{
+    content: '';
+    display: block;
+    border: 10px solid transparent;
+    border-top-color: #ccc;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top:100%;
+    left: 10px;
+  }
+  &::after{
+    content: '';
+    display: block;
+    border: 10px solid transparent;
+    border-top-color: white;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 10px;
+  }
 }
 </style>
