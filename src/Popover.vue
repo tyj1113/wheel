@@ -1,6 +1,6 @@
 <template>
   <div class="popover" @click="onClick">
-    <div class="content-wrapper" v-if="visible"  ref="contentWrapper">
+    <div class="content-wrapper" v-if="visible" ref="contentWrapper">
       <slot name="content"></slot>
     </div>
     <div ref="triggerWrapper">
@@ -18,25 +18,34 @@ export default {
     }
   },
   methods: {
+    getPosition() {
+      this.$nextTick(() => {
+        const {top, left} = this.$refs.triggerWrapper.getBoundingClientRect()
+        document.body.appendChild(this.$refs.contentWrapper)
+        this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
+        this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
+      })
+    },
+    documentClick(event) {
+      if (this.$refs.contentWrapper && this.$refs.contentWrapper.contains(event.target)) {return}
+      if (this.$refs.triggerWrapper && this.$refs.triggerWrapper.contains(event.target)) {return}
+      this.close()
+    },
+    open() {
+      this.visible = true
+      this.getPosition()
+      document.addEventListener('click', this.documentClick)
+    },
+    close() {
+      this.visible = false
+      document.removeEventListener('click', this.documentClick)
+    },
+
     onClick() {
-      this.visible = !this.visible
-      let documentClick = (event) => {
-        if(this.$refs.contentWrapper && this.$refs.contentWrapper.contains(event.target) ){return}
-        if(this.$refs.triggerWrapper && this.$refs.triggerWrapper.contains(event.target)){return}
-        this.visible = false
-        document.removeEventListener('click', documentClick)
-      }
-      if (this.visible === true) {
-        this.$nextTick(() => {
-          const {top, left} = this.$refs.triggerWrapper.getBoundingClientRect()
-          const content=this.$refs.contentWrapper
-          document.body.appendChild(content)
-          this.$refs.contentWrapper.style.top = top+window.scrollY+'px'
-          this.$refs.contentWrapper.style.left = left+window.scrollX+'px'
-        })
-        document.addEventListener('click', documentClick)
-      }else{
-        document.removeEventListener('click', documentClick)
+      if (this.visible === false) {
+        this.open()
+      } else {
+        this.close()
       }
     }
   }
