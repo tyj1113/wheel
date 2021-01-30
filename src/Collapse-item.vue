@@ -1,6 +1,6 @@
 <template>
     <div class="collapseItem"  >
-      <div class="title" @click="onClick">{{title}}</div>
+      <div class="title" @click="onClick"  :data-name="name">{{title}}</div>
       <div class="contentWrapper" v-if="show">
         <slot></slot>
       </div>
