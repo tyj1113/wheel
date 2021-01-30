@@ -47,6 +47,14 @@ export default {
       this.$refs.popover.addEventListener('mouseleave', this.close)
     }
   },
+  destroyed() {
+    if (this.trigger === 'click') {
+      this.$refs.popover.removeEventListener('click', this.onClick)
+    } else {
+      this.$refs.popover.removeEventListener('mouseenter', this.open)
+      this.$refs.popover.removeEventListener('mouseleave', this.close)
+    }
+  },
   methods: {
     getPosition() {
       this.$nextTick(() => {
