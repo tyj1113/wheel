@@ -17,6 +17,8 @@ import TabsBody from './Tabs-body'
 import TabsItem from './Tabs-item'
 import TabsPane from './Tabs-pane'
 import Popover from "./Popover";
+import Collapse from "./Collapse";
+import CollapseItem from "./Collapse-item";
 
 Vue.component('t-button',Button)
 Vue.component('t-icon',Icon)
@@ -36,6 +38,8 @@ Vue.component('t-tabs-body', TabsBody)
 Vue.component('t-tabs-item', TabsItem)
 Vue.component('t-tabs-pane', TabsPane)
 Vue.component('t-popover', Popover)
+Vue.component('t-collapse', Collapse)
+Vue.component('t-collapse-item', CollapseItem)
 
 new Vue({
     el:'#app',
@@ -44,7 +48,8 @@ new Vue({
         loading2:false,
         loading3:false,
         message:'hi',
-        selectedTab: 'game'
+        selectedTab: 'game',
+        selectedItems:['2']
     },
     methods: {
         showToast1(){

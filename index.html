@@ -35,35 +35,21 @@
 </head>
 <body>
 <div id="app">
-<!--    <div style="width: 200px;height: 2000px;border:1px solid #ccc"></div>-->
-    <div @click="fatherClick" style="border:1px solid green;overflow: hidden;padding: 100px 100px;">
-        <t-popover position="left">
-            <template slot="content">
-                我我我我我我
-                <a href="https://www.baidu.com/">baidu</a>
-            </template>
-            <button>点我</button>
-        </t-popover>
-        <t-popover >
-            <template  v-slot:content="{close}">
-                我出来了<t-button @click="close">关闭</t-button>
-            </template>
-            <button>点我</button>
-        </t-popover>
-        <t-popover position="bottom">
-            <template slot="content">
-                我出来了
-            </template>
-            <button>点我</button>
-        </t-popover>
-        <t-popover position="right" trigger="hover">
-            <template slot="content">
-                我出来了
-            </template>
-            <button>点我</button>
-        </t-popover>
+    <div style="padding: 100px">
+
+        <t-collapse :selected.sync="selectedItems"  >
+            <t-collapse-item title="标题1" name="1">内容1</t-collapse-item>
+            <t-collapse-item title="标题2" name="2">内容2</t-collapse-item>
+            <t-collapse-item title="标题3" name="3">内容3</t-collapse-item>
+        </t-collapse>
     </div>
 
+<!--    <g-collapse :selected.sync="selectedTab" single>-->
+<!--        <g-collapse-item title="标题1" name="1">内容1</g-collapse-item>-->
+<!--        <g-collapse-item title="标题2" name="2">内容2</g-collapse-item>-->
+<!--        <g-collapse-item title="标题3" name="3">内容3</g-collapse-item>-->
+<!--    </g-collapse>-->
+<!--    {{selectedTab}}-->
 
 </div>
 <script src="./src/app.js"></script>
