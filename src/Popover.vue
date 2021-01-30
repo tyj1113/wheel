@@ -1,7 +1,7 @@
 <template>
   <div class="popover" ref="popover">
     <div class="content-wrapper" v-if="visible" ref="contentWrapper" :class="classes">
-      <slot name="content"></slot>
+      <slot name="content" :close="close"></slot>
     </div>
     <div ref="triggerWrapper">
       <slot></slot>
@@ -50,23 +50,30 @@ export default {
   methods: {
     getPosition() {
       this.$nextTick(() => {
-        const {top, left, right, height} = this.$refs.triggerWrapper.getBoundingClientRect()
-        document.body.appendChild(this.$refs.contentWrapper)
+        const {contentWrapper, triggerWrapper} = this.$refs
+        const {top, left, right, height} = triggerWrapper.getBoundingClientRect()
+        document.body.appendChild(contentWrapper)
         const {height: height2} = this.$refs.contentWrapper.getBoundingClientRect()
-        if (this.position === 'top') {
-          this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
-          this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-        } else if (this.position === 'bottom') {
-          this.$refs.contentWrapper.style.top = top + window.scrollY + height + 'px'
-          this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-        } else if (this.position === 'left') {
-          this.$refs.contentWrapper.style.top = top + window.scrollY + (height - height2) / 2 + 'px'
-          this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-        } else {
-          this.$refs.contentWrapper.style.top = top + window.scrollY + (height - height2) / 2 + 'px'
-          this.$refs.contentWrapper.style.left = right + window.scrollX + 'px'
+        let object = {
+          top: {
+            top: top + window.scrollY,
+            left: left + window.scrollX
+          },
+          bottom: {
+            top: top + window.scrollY + height,
+            left: left + window.scrollX
+          },
+          left: {
+            top: top + window.scrollY + (height - height2) / 2,
+            left: left + window.scrollX
+          },
+          right: {
+            top: top + window.scrollY + (height - height2) / 2,
+            left: right + window.scrollX
+          }
         }
-
+        contentWrapper.style.top = object[this.position].top + 'px'
+        contentWrapper.style.left = object[this.position].left + 'px'
       })
     },
     documentClick(event) {

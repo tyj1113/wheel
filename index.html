@@ -40,12 +40,13 @@
         <t-popover position="left">
             <template slot="content">
                 我我我我我我
+                <a href="https://www.baidu.com/">baidu</a>
             </template>
             <button>点我</button>
         </t-popover>
         <t-popover >
-            <template slot="content">
-                我出来了
+            <template  v-slot:content="{close}">
+                我出来了<t-button @click="close">关闭</t-button>
             </template>
             <button>点我</button>
         </t-popover>
