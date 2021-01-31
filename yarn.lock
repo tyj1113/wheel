@@ -922,7 +922,7 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/json-schema@^7.0.5":
+"@types/json-schema@^7.0.5", "@types/json-schema@^7.0.6":
   version "7.0.7"
   resolved "https://registry.npm.taobao.org/@types/json-schema/download/@types/json-schema-7.0.7.tgz?cache=0&sync_timestamp=1611096103663&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fjson-schema%2Fdownload%2F%40types%2Fjson-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
   integrity sha1-mKmTUWyFnrDVxMjwmDF6nqaNua0=
@@ -1412,7 +1412,7 @@ ajv-keywords@^3.1.0, ajv-keywords@^3.4.1, ajv-keywords@^3.5.2:
   resolved "https://registry.npm.taobao.org/ajv-keywords/download/ajv-keywords-3.5.2.tgz#31f29da5ab6e00d1c2d329acf7b5929614d5014d"
   integrity sha1-MfKdpatuANHC0yms97WSlhTVAU0=
 
-ajv@^6.1.0, ajv@^6.10.2, ajv@^6.12.3, ajv@^6.12.4:
+ajv@^6.1.0, ajv@^6.10.2, ajv@^6.12.3, ajv@^6.12.4, ajv@^6.12.5:
   version "6.12.6"
   resolved "https://registry.npm.taobao.org/ajv/download/ajv-6.12.6.tgz?cache=0&sync_timestamp=1609583976611&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fajv%2Fdownload%2Fajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
   integrity sha1-uvWmLoArB9l3A0WG+MO69a3ybfQ=
@@ -6106,6 +6106,11 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.npm.taobao.org/kind-of/download/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha1-B8BQNKbDSfoG4k+jWqdttFgM5N0=
 
+klona@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.npm.taobao.org/klona/download/klona-2.0.4.tgz?cache=0&sync_timestamp=1600226636423&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fklona%2Fdownload%2Fklona-2.0.4.tgz#7bb1e3affb0cb8624547ef7e8f6708ea2e39dfc0"
+  integrity sha1-e7Hjr/sMuGJFR+9+j2cI6i4538A=
+
 last-call-webpack-plugin@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npm.taobao.org/last-call-webpack-plugin/download/last-call-webpack-plugin-3.0.0.tgz#9742df0e10e3cf46e5c0381c2de90d3a7a2d7555"
@@ -6175,6 +6180,15 @@ loader-utils@^1.0.2, loader-utils@^1.1.0, loader-utils@^1.2.3, loader-utils@^1.4
     big.js "^5.2.2"
     emojis-list "^3.0.0"
     json5 "^1.0.1"
+
+loader-utils@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/loader-utils/download/loader-utils-2.0.0.tgz#e4cace5b816d425a166b5f097e10cd12b36064b0"
+  integrity sha1-5MrOW4FtQloWa18JfhDNErNgZLA=
+  dependencies:
+    big.js "^5.2.2"
+    emojis-list "^3.0.0"
+    json5 "^2.1.2"
 
 locate-path@^3.0.0:
   version "3.0.0"
@@ -6762,7 +6776,7 @@ negotiator@0.6.2:
   resolved "https://registry.npm.taobao.org/negotiator/download/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha1-/qz3zPUlp3rpY0Q2pkiD/+yjRvs=
 
-neo-async@^2.5.0, neo-async@^2.6.1:
+neo-async@^2.5.0, neo-async@^2.6.1, neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.npm.taobao.org/neo-async/download/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha1-tKr7k+OustgXTKU88WOrfXMIMF8=
@@ -8763,6 +8777,17 @@ sass-graph@2.2.5:
     scss-tokenizer "^0.2.3"
     yargs "^13.3.2"
 
+sass-loader@^10.1.1:
+  version "10.1.1"
+  resolved "https://registry.npm.taobao.org/sass-loader/download/sass-loader-10.1.1.tgz?cache=0&sync_timestamp=1610373188078&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsass-loader%2Fdownload%2Fsass-loader-10.1.1.tgz#4ddd5a3d7638e7949065dd6e9c7c04037f7e663d"
+  integrity sha1-Td1aPXY455SQZd1unHwEA39+Zj0=
+  dependencies:
+    klona "^2.0.4"
+    loader-utils "^2.0.0"
+    neo-async "^2.6.2"
+    schema-utils "^3.0.0"
+    semver "^7.3.2"
+
 sax@~1.2.1, sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.npm.taobao.org/sax/download/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -8784,6 +8809,15 @@ schema-utils@^2.6.5:
   dependencies:
     "@types/json-schema" "^7.0.5"
     ajv "^6.12.4"
+    ajv-keywords "^3.5.2"
+
+schema-utils@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npm.taobao.org/schema-utils/download/schema-utils-3.0.0.tgz?cache=0&sync_timestamp=1601922425223&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fschema-utils%2Fdownload%2Fschema-utils-3.0.0.tgz#67502f6aa2b66a2d4032b4279a2944978a0913ef"
+  integrity sha1-Z1AvaqK2ai1AMrQnmilEl4oJE+8=
+  dependencies:
+    "@types/json-schema" "^7.0.6"
+    ajv "^6.12.5"
     ajv-keywords "^3.5.2"
 
 scss-tokenizer@^0.2.3:
