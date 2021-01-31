@@ -55,5 +55,8 @@ name: "Collapse",
 </script>
 
 <style lang="scss" scoped>
-
+.collapse {
+  border: 1px solid #bbbbbb;
+  border-radius: 4px;
+}
 </style>

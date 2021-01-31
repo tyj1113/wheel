@@ -43,5 +43,34 @@ name: "Collapse-item",
 </script>
 
 <style lang="scss" scoped>
+.collapseItem {
+  > .title {
+    border: 1px solid #bbb;
+    margin-top: -1px;
+    margin-left: -1px;
+    margin-right: -1px;
+    margin-bottom: -1px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+  }
 
+  &:first-child {
+    > .title {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+  }
+
+  &:last-child {
+    > .title:last-child {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+  }
+  .contentWrapper{
+    padding: 8px;
+  }
+}
 </style>
