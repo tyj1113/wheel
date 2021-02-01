@@ -14,21 +14,23 @@
 
 IE 8 及以上浏览器都支持此样式。
 
-你还需要设置默认颜色等变量（后续会改为 SCSS 变量）
-
-
-IE 15 及以上浏览器都支持此样式。
-
 2.安装
 
 $ npm install tomtangwheel
+
 $ yarn add tomtangwheel
 
 3.引入 
 
+以Button组件为例,入口文件 添加以下代码
 
+import 'tomtangwheel/dist/index.css'
+import{Button} from tomtangwheel
+Vue.component('t-button',Button)
 
 ## 文档
+https://tyj1113.github.io/wheel/component/button.html
+
 ## 提问
 ## 变更记录
 ## 联系方式
