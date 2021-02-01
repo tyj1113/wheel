@@ -1,4 +1,5 @@
 module.exports = {
+    base:'/wheel/',
     title: 'Tom UI',
     description: '这是我在学习Vue的过程中做的一个UI框架,希望对你有用',
     themeConfig: {

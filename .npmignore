@@ -1,0 +1,11 @@
+/.idea/
+/docs/
+/src/
+/test/
+deploy.sh
+/node_modules/
+.gitignore
+.travis.yml
+LICENSE
+
+/.cache/

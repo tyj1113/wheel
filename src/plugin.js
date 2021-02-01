@@ -1,4 +1,4 @@
-import Toast from './toast'
+import Toast from './Toast'
 let currentToast
 function createToast({Vue,message,propsData}){
     let Constructor=Vue.extend(Toast)

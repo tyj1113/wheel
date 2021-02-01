@@ -1,4 +1,4 @@
-# 轮子 - 一个Vue UI 组件
+# tom-ui - 一个Vue UI 组件
 
 [![Build Status](https://travis-ci.org/tyj1113/wheel.svg?branch=master)](https://travis-ci.org/tyj1113/wheel)
 
@@ -19,11 +19,12 @@ IE 8 及以上浏览器都支持此样式。
 
 IE 15 及以上浏览器都支持此样式。
 
-2.安装 wheel
+2.安装
 
-npm i --save frank-test-1-1
+$ npm install tomtangwheel
+$ yarn add tomtangwheel
 
-3.引入 wheel
+3.引入 
 
 
 
