@@ -30,7 +30,7 @@ describe('Button', () => {
         }).$mount()
         const useElements = vm.$el.querySelectorAll('use')
         expect(useElements.length).to.equal(1)
-        expect(useElements[0].getAttribute('xlink:href')).to.equal('#iconxingzhuang')
+        expect(useElements[0].getAttribute('xlink:href')).to.equal('#iconloading')
         vm.$destroy()
     })
     it('icon 默认的 order 是 0', () => {

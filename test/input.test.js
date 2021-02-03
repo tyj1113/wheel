@@ -53,7 +53,7 @@ describe('Input', () => {
                 }
             }).$mount()
             const useElement = vm.$el.querySelector('use')
-            expect(useElement.getAttribute('xlink:href')).to.equal('#iconjinggao')
+            expect(useElement.getAttribute('xlink:href')).to.equal('#iconwarning')
             const errorMessage = vm.$el.querySelector('.errorMessage')
             expect(errorMessage.innerText).to.equal('warning')
         })

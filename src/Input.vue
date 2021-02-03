@@ -7,7 +7,7 @@
               @focus="$emit('focus',$event.target.value)"
       >
       <template v-if="error">
-        <icon name="jinggao" class="icon-error"></icon>
+        <icon name="warning" class="icon-error"></icon>
         <span class="errorMessage">{{error}}</span>
       </template>
     </div>
