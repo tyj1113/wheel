@@ -19,6 +19,8 @@ import TabsPane from './Tabs-pane'
 import Popover from "./Popover";
 import Collapse from "./Collapse";
 import CollapseItem from "./Collapse-item";
+import Cascader from "./Cascader";
+import CascaderItem from "./Cascader-item"
 
 Vue.component('t-button',Button)
 Vue.component('t-icon',Icon)
@@ -40,7 +42,8 @@ Vue.component('t-tabs-pane', TabsPane)
 Vue.component('t-popover', Popover)
 Vue.component('t-collapse', Collapse)
 Vue.component('t-collapse-item', CollapseItem)
-
+Vue.component('t-cascader', Cascader)
+Vue.component('t-cascader-item', CascaderItem)
 new Vue({
     el:'#app',
     data:{
@@ -49,7 +52,50 @@ new Vue({
         loading3:false,
         message:'hi',
         selectedTab: 'game',
-        selectedItems:['2']
+        selectedItems:['2'],
+        source: [{
+            name: '浙江',
+            children: [
+                {
+                    name: '杭州',
+                    children: [
+                        {name: '上城'},
+                        {name: '下城'},
+                        {name: '江干'},
+                    ]
+                },
+                {
+                    name: '嘉兴',
+                    children: [
+                        {name: '南湖'},
+                        {name: '秀洲'},
+                        {name: '嘉善'},
+                    ]
+                },
+            ]
+        }, {
+            name: '福建',
+            children: [
+                {
+                    name: '福州',
+                    children: [
+                        {name: '鼓楼'},
+                        {name: '台江'},
+                        {name: '仓山'},
+                    ]
+                },
+            ]
+        }, {
+            name: '安徽',
+            children: [{
+                name: '合肥',
+                children: [{
+                    name: '瑶海'
+                }, {
+                    name: '庐阳'
+                }]
+            }]
+        }]
     },
     methods: {
         showToast1(){

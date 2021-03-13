@@ -7,7 +7,7 @@ function createToast({Vue,message,propsData}){
     })
     toast.$slots.default=[message]
     toast.$mount()
-    toast.$on('close',()=>{
+    toast.$on('close',()=>{ //监听自定义close  触发后currentToast赋值为Null
         currentToast=null
     })
     document.body.appendChild(toast.$el)
@@ -17,7 +17,7 @@ export default {
     install(Vue,options){
         Vue.prototype.$toast=function (message,propOption){
             if(currentToast){
-                currentToast.close()
+                currentToast.close()   //当出现新的toast关闭之前的   调用close会触发自定义close 将currentToast赋值为null
             }
             currentToast=createToast({Vue,message,propsData:propOption})
         }

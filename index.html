@@ -24,6 +24,10 @@
 </head>
 <body>
 <div id="app">
+
+    <t-cascader :source="source"></t-cascader>
+
+
     <div style="padding: 100px">
         <t-collapse :selected.sync="selectedItems"  >
             <t-collapse-item title="标题1" name="1">内容1</t-collapse-item>
