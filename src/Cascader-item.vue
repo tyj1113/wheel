@@ -1,12 +1,13 @@
 <template>
-  <div class="cascaderItem">
+  <div class="cascaderItem" :style="{height: height}">
     <div class="left">
       <div class="label" v-for="item in items" @click="leftSelected = item">
         {{item.name}}
+        <t-icon name="right" v-if="item.children"></t-icon>
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <t-cascader-item :items="rightItems"></t-cascader-item>
+      <t-cascader-item :items="rightItems" :height="height"></t-cascader-item>
     </div>
   </div>
 </template>
@@ -17,6 +18,9 @@ export default {
   props:{
     items:{
       type:Array
+    },
+    height: {
+      type: String
     }
   },
   data () {
@@ -40,8 +44,24 @@ export default {
 .cascaderItem {
   display: flex;
   align-items: flex-start;
+  height: 100px;
   .left {
-    border: 1px solid red;
+    height: 100%;
+    padding: .3em 0;
   }
+  .right{
+    height: 100%;
+    border-left: 1px solid lighten(#999, 25%);
+  }
+  .label {
+    padding: .3em 1em;
+    display: flex;
+    align-items: center;
+    .t-icon {
+      margin-left: 1em;
+      transform: scale(0.5);
+    }
+  }
+
 }
 </style>
