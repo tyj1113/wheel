@@ -1,43 +1,29 @@
 {
-  "name": "tomtangwheel",
-  "version": "0.0.3",
-  "description": "一个Vue UI 组件库",
-  "main": "dist/index.js",
+  "name": "hello-world",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "start": "parcel index.html --no-cache",
-    "build": "parcel build index.js --no-minify",
-    "dev-test": "concurrently \"parcel watch test/* --no-cache\" \"karma start\" ",
-    "test": "parcel build test/* --no-minify && karma start --single-run",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
-  },
-  "repository": "git@github.com:tyj1113/wheel.git",
-  "author": "tyj1113 <1991383016@qq.com>",
-  "license": "MIT",
-  "alias": {
-    "vue": "./node_modules/vue/dist/vue.common.js"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@vue/component-compiler-utils": "^3.2.0",
-    "chai": "^4.2.0",
-    "chai-spies": "^1.0.0",
-    "node-sass": "^5.0.0",
-    "parcel-bundler": "1.9.3",
-    "sass-loader": "^10.1.1",
-    "vue": "^2.6.12",
-    "vue-hot-reload-api": "^2.3.4",
-    "vue-template-compiler": "^2.6.12"
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
-    "karma": "^6.0.0",
-    "karma-chai": "^0.1.0",
-    "karma-chai-spies": "^0.1.4",
-    "karma-chrome-launcher": "^3.1.0",
-    "karma-mocha": "^2.0.1",
-    "karma-sinon-chai": "^2.0.2",
-    "mocha": "^8.2.1",
-    "sinon": "^9.2.3",
-    "sinon-chai": "^3.5.0",
-    "vuepress": "^1.8.0"
-  }
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-unit-mocha": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/test-utils": "^1.0.3",
+    "chai": "^4.1.2",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
