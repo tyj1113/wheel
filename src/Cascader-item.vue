@@ -7,14 +7,18 @@
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <t-cascader-item :items="rightItems" :height="height"></t-cascader-item>
+      <cascader-item :items="rightItems" :height="height"></cascader-item>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script >
+import Icon from './Icon'
 export default {
-  name: 'Cascader-item.vue',
+  name: 'CascaderItem',
+  components: {
+    't-icon':Icon
+  },
   props:{
     items:{
       type:Array

@@ -11,9 +11,12 @@
 </template>
 
 <script >
-
+import CascaderItem from './Cascader-item'
 export default {
   name: 'Cascader.vue',
+  components:{
+    't-cascader-item':CascaderItem
+  },
   data () {
     return {
       popoverVisible: false,
