@@ -1,7 +1,7 @@
 <template>
   <div class="cascader">
     <div class="trigger" @click="popoverVisible = !popoverVisible">
-      请选择省
+      {{ result  || '请选择'}}
     </div>
     <div class="popoverWrapper" v-if="popoverVisible">
       <t-cascader-item :items="source" class="popover"
@@ -41,6 +41,11 @@ export default {
       type: Array,
       default: () => []
     },
+  },
+  computed: {
+    result () {
+      return this.selected.map((item) => item.name).join('/')
+    }
   }
 };
 </script>
@@ -51,8 +56,12 @@ export default {
 
   .trigger {
     border: 1px solid black;
-    width: 80px;
-    //height: 32px;
+    min-width: 10em;
+    height: 32px;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 1em;
   }
 
   .popoverWrapper {
@@ -62,6 +71,7 @@ export default {
     background: white;
     display: flex;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    margin-top: 8px;
   }
 }
 </style>
