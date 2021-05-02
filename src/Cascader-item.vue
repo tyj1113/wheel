@@ -46,6 +46,7 @@ export default {
     onClickLabel (item) {
       let copy = JSON.parse(JSON.stringify(this.selected))
       copy[this.level] = item
+      if(JSON.stringify(copy[this.level])===JSON.stringify(this.selected[this.level])){return}
       copy.splice(this.level + 1) // 一句话
       this.$emit('update:selected', copy)
     },
