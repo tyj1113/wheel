@@ -1,7 +1,8 @@
 <template>
     <div>
 
-      <t-cascader :source="source" popover-height="200px"></t-cascader>
+      <t-cascader :source="source" popover-height="200px" :selected.sync="selected"
+                 ></t-cascader>
 
     </div>
 </template>
@@ -52,7 +53,8 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      selected:[]
     };
   },
   components:{

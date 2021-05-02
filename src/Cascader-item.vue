@@ -1,13 +1,15 @@
 <template>
   <div class="cascaderItem" :style="{height: height}">
     <div class="left">
-      <div class="label" v-for="item in items" @click="leftSelected = item">
+      <div class="label" v-for="item in items" @click="onClickLabel(item)">
         {{item.name}}
         <t-icon name="right" v-if="item.children"></t-icon>
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <cascader-item :items="rightItems" :height="height"></cascader-item>
+      <cascader-item :items="rightItems" :height="height" :level="level+1" :selected="selected"
+      @update:selected="onUpdateSelected"
+      ></cascader-item>
     </div>
   </div>
 </template>
@@ -25,6 +27,14 @@ export default {
     },
     height: {
       type: String
+    },
+    selected: {
+      type: Array,
+      default: () => []
+    },
+    level: {
+      type: Number,
+      default: 0
     }
   },
   data () {
@@ -32,10 +42,22 @@ export default {
       leftSelected: null
     }
   },
+  methods: {
+    onClickLabel (item) {
+      let copy = JSON.parse(JSON.stringify(this.selected))
+      copy[this.level] = item
+      copy.splice(this.level + 1) // 一句话
+      this.$emit('update:selected', copy)
+    },
+    onUpdateSelected (newSelected) {
+      this.$emit('update:selected', newSelected)
+    }
+  },
   computed: {
     rightItems () {
-      if (this.leftSelected && this.leftSelected.children) {  //如果左边又被选中 并且有下一级 就返回下级对象
-        return this.leftSelected.children
+      let currentSelected = this.selected[this.level]
+      if (currentSelected && currentSelected.children) {
+        return currentSelected.children
       } else {
         return null
       }
