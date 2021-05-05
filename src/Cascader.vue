@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     onUpdateSelected (newSelected) {
-      this.$emit('update:selected', newSelected)
+      this.$emit('update:selected', newSelected)//更新selected
 
       let lastItem = newSelected[newSelected.length - 1]//单击时获取被单击的这一项 因为单击后会清空后面的项所以取最后一项
       let simplest = (children, id) => {
