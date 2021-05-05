@@ -28,6 +28,49 @@ export default {
   methods: {
     onUpdateSelected (newSelected) {
       this.$emit('update:selected', newSelected)
+
+      let lastItem = newSelected[newSelected.length - 1]//单击时获取被单击的这一项 因为单击后会清空后面的项所以取最后一项
+      let simplest = (children, id) => {
+        return children.filter(item => item.id === id)[0]
+      }//处理没有children属性的对象
+      let complex = (children, id) => {
+        //处理有children属性的对象
+        //将数据分为有children属性跟没有children属性
+        let noChildren = []
+        let hasChildren = []
+
+        children.forEach(item => {
+          if (item.children) {
+            hasChildren.push(item)
+          } else {
+            noChildren.push(item)
+          }
+        })
+        let found = simplest(noChildren, id)//在没有children属性的数据里查找
+        if (found) {
+          return found
+        } else {//找不到就去有children属性的数据里找
+          found = simplest(hasChildren, id)
+          if (found) { return found }
+          else {//没找到继续去这些数据的children属性里找 通过递归 先遍历这些对象在获取他们的children属性对象 调用complex
+            for (let i = 0; i < hasChildren.length; i++) {
+              found = complex(hasChildren[i].children, id)
+              if (found) {//如果找到就return 出去
+                return found
+              }
+            }
+            return undefined//找不到返回undefined
+          }
+        }
+      }
+      let updateSource = (result) => {//内部定义的updateSource 方法
+        let copy = JSON.parse(JSON.stringify(this.source))//深拷贝数据
+        let toUpdate = complex(copy, lastItem.id)
+        toUpdate.children = result//将下一级的数据添加到上一级的children属性里
+        this.$emit('update:source', copy)// 通过自定义事件修改顶层数据
+      }
+      this.loadData(lastItem, updateSource) // 回调:把别人传给我的函数调用一下
+      // 调回调的时候传一个函数,这个函数理论应该被调用
     }
   },
   props: {
@@ -41,6 +84,9 @@ export default {
       type: Array,
       default: () => []
     },
+    loadData: {
+      type: Function
+    }
   },
   computed: {
     result () {
