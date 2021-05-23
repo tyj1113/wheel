@@ -3,12 +3,12 @@
     <div class="left">
       <div class="label" v-for="item in items" @click="onClickLabel(item)">
         <span class="name">{{item.name}}</span>
-        <t-icon name="right" v-if="rightArrowVisible(item)" class="icon"></t-icon>
+        <t-icon name="right" v-if="rightArrowVisible(item)"></t-icon>
       </div>
     </div>
     <div class="right" v-if="rightItems">
       <cascader-item :items="rightItems" :height="height" :level="level+1" :selected="selected"
-      @update:selected="onUpdateSelected"
+      @update:selected="onUpdateSelected" :loadData="loadData"
       ></cascader-item>
     </div>
   </div>
@@ -47,10 +47,7 @@ export default {
   },
   methods: {
     rightArrowVisible (item) {
-      //console.log(item,this.loadData ,item.isLeaf,item.children)
       return this.loadData ? !item.isLeaf : item.children
-      // return !item.isLeaf
-
     },
     onClickLabel (item) {
       let copy = JSON.parse(JSON.stringify(this.selected))
