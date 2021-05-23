@@ -48,8 +48,8 @@ export default {
   methods: {
     rightArrowVisible (item) {
       //console.log(item,this.loadData ,item.isLeaf,item.children)
-      // return this.loadData ? !item.isLeaf : item.children
-      return !item.isLeaf
+      return this.loadData ? !item.isLeaf : item.children
+      // return !item.isLeaf
 
     },
     onClickLabel (item) {
