@@ -1,6 +1,6 @@
 <template>
-  <div class="cascader">
-    <div class="trigger" @click="popoverVisible = !popoverVisible">
+  <div class="cascader" ref="cascader">
+    <div class="trigger" @click="toggle">
       {{ result  || '请选择'}}
     </div>
     <div class="popoverWrapper" v-if="popoverVisible">
@@ -73,7 +73,30 @@ export default {
         this.loadData && this.loadData(lastItem, updateSource) // 回调:把别人传给我的函数调用一下
         // 调回调的时候传一个函数,这个函数理论应该被调用
       }
-    }
+    },
+    onClickDocument (e) {
+      let {cascader} = this.$refs
+      let {target} = e
+      if (cascader === target || cascader.contains(target)) { return }
+      this.close()
+    },
+    open () {
+      this.popoverVisible = true
+      this.$nextTick(() => {
+        document.addEventListener('click', this.onClickDocument)
+      })
+    },
+    close () {
+      this.popoverVisible = false
+      document.removeEventListener('click', this.onClickDocument)
+    },
+    toggle () {
+      if (this.popoverVisible === true) {
+        this.close()
+      } else {
+        this.open()
+      }
+    },
   },
   props: {
     source: {
@@ -101,7 +124,7 @@ export default {
 <style lang="scss" scoped>
 .cascader {
   position: relative;
-
+  display: inline-block;
   .trigger {
     border: 1px solid black;
     min-width: 10em;
