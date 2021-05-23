@@ -16,7 +16,15 @@ import db from './db'
 function ajax (parentId = 0) {
   return new Promise((success, fail) => {
     setTimeout(() => {
-      let result = db.filter((item) => item.parent_id == parentId)
+      let result = db.filter((item) => item.parent_id === parentId)
+      result.forEach(node => {
+        if (db.filter(item => item.parent_id === node.id).length > 0) {
+          node.isLeaf = false
+        }else{
+          node.isLeaf = true
+        }
+      })
+      // console.log(result)
       success(result)
     }, 300)//模拟异步获取数据
   })
@@ -71,7 +79,7 @@ export default {
       //     ]
       //   }
       // ],
-      source:[],
+       source:[],
       selected:[]
     };
   },

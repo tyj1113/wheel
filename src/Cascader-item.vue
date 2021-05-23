@@ -2,8 +2,8 @@
   <div class="cascaderItem" :style="{height: height}">
     <div class="left">
       <div class="label" v-for="item in items" @click="onClickLabel(item)">
-        {{item.name}}
-        <t-icon name="right" v-if="item.children"></t-icon>
+        <span class="name">{{item.name}}</span>
+        <t-icon name="right" v-if="rightArrowVisible(item)" class="icon"></t-icon>
       </div>
     </div>
     <div class="right" v-if="rightItems">
@@ -35,7 +35,10 @@ export default {
     level: {
       type: Number,
       default: 0
-    }
+    },
+    loadData: {
+      type: Function
+    },
   },
   data () {
     return {
@@ -43,6 +46,12 @@ export default {
     }
   },
   methods: {
+    rightArrowVisible (item) {
+      //console.log(item,this.loadData ,item.isLeaf,item.children)
+      // return this.loadData ? !item.isLeaf : item.children
+      return !item.isLeaf
+
+    },
     onClickLabel (item) {
       let copy = JSON.parse(JSON.stringify(this.selected))
       copy[this.level] = item
@@ -80,7 +89,7 @@ export default {
   height: 100px;
   .left {
     height: 100%;
-    //padding: .3em 0;
+    padding: .5em 0;
     overflow: auto;
   }
   .right{
@@ -91,8 +100,16 @@ export default {
     padding: .3em 1em;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    &:hover{
+      background:#eee;
+    }
+    > .name {
+      margin-right: 1em;
+      user-select: none;
+    }
     .t-icon {
-      margin-left: 1em;
+      margin-left: auto;
       transform: scale(0.5);
     }
   }

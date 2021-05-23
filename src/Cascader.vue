@@ -4,7 +4,7 @@
       {{ result  || '请选择'}}
     </div>
     <div class="popoverWrapper" v-if="popoverVisible">
-      <t-cascader-item :items="source" class="popover"
+      <t-cascader-item :items="source" class="popover" :loadData="loadData"
        :selected="selected" :height="popoverHeight"
         @update:selected="onUpdateSelected"></t-cascader-item>
     </div>
@@ -69,8 +69,10 @@ export default {
         toUpdate.children = result//将下一级的数据添加到上一级的children属性里
         this.$emit('update:source', copy)// 通过自定义事件修改顶层数据
       }
-      this.loadData(lastItem, updateSource) // 回调:把别人传给我的函数调用一下
-      // 调回调的时候传一个函数,这个函数理论应该被调用
+      if (!lastItem.isLeaf) {
+        this.loadData && this.loadData(lastItem, updateSource) // 回调:把别人传给我的函数调用一下
+        // 调回调的时候传一个函数,这个函数理论应该被调用
+      }
     }
   },
   props: {
