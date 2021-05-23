@@ -29,7 +29,6 @@ function ajax (parentId = 0) {
     }, 300)//模拟异步获取数据
   })
 }
-console.log(ajax())
 export default {
   name: "demo",
   created () {

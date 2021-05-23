@@ -1,5 +1,5 @@
 <template>
-  <div class="cascader" ref="cascader">
+  <div class="cascader" ref="cascader" v-click-outside="close">
     <div class="trigger" @click="toggle">
       {{ result  || '请选择'}}
     </div>
@@ -14,9 +14,11 @@
 
 <script>
 import CascaderItem from './Cascader-item'
+import ClickOutside from './click-outside'
 
 export default {
   name: 'Cascader.vue',
+  directives:{ClickOutside},
   components: {
     't-cascader-item': CascaderItem
   },
@@ -74,21 +76,21 @@ export default {
         // 调回调的时候传一个函数,这个函数理论应该被调用
       }
     },
-    onClickDocument (e) {
-      let {cascader} = this.$refs
-      let {target} = e
-      if (cascader === target || cascader.contains(target)) { return }
-      this.close()
-    },
+    // onClickDocument (e) {
+    //   let {cascader} = this.$refs
+    //   let {target} = e
+    //   if (cascader === target || cascader.contains(target)) { return }
+    //   this.close()
+    // },
     open () {
       this.popoverVisible = true
-      this.$nextTick(() => {
-        document.addEventListener('click', this.onClickDocument)
-      })
+      // this.$nextTick(() => {
+      //   document.addEventListener('click', this.onClickDocument)
+      // })
     },
     close () {
       this.popoverVisible = false
-      document.removeEventListener('click', this.onClickDocument)
+      // document.removeEventListener('click', this.onClickDocument)
     },
     toggle () {
       if (this.popoverVisible === true) {
