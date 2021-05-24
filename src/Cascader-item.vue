@@ -3,12 +3,20 @@
     <div class="left">
       <div class="label" v-for="item in items" @click="onClickLabel(item)">
         <span class="name">{{item.name}}</span>
-        <t-icon name="right" v-if="rightArrowVisible(item)"></t-icon>
+        <span class="icons">
+          <template v-if="item.name === loadingItem.name">
+            <t-icon class="loading" name="loading"></t-icon>
+          </template>
+          <template v-else>
+            <t-icon class="next" v-if="rightArrowVisible(item)" name="right"></t-icon>
+          </template>
+        </span>
+<!--        <t-icon name="right" v-if="rightArrowVisible(item)"></t-icon>-->
       </div>
     </div>
     <div class="right" v-if="rightItems">
       <cascader-item :items="rightItems" :height="height" :level="level+1" :selected="selected"
-      @update:selected="onUpdateSelected" :loadData="loadData"
+      @update:selected="onUpdateSelected" :loadData="loadData" :loading-item="loadingItem"
       ></cascader-item>
     </div>
   </div>
@@ -38,6 +46,10 @@ export default {
     },
     loadData: {
       type: Function
+    },
+    loadingItem: {
+      type: Object,
+      default: () => ({})
     },
   },
   data () {
@@ -80,6 +92,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 .cascaderItem {
   display: flex;
   align-items: flex-start;
@@ -106,9 +122,14 @@ export default {
       margin-right: 1em;
       user-select: none;
     }
-    .t-icon {
+    .icons {
       margin-left: auto;
-      transform: scale(0.5);
+      .next {
+        transform: scale(0.5);
+      }
+      .loading {
+        animation: spin 2s infinite linear;
+      }
     }
   }
 

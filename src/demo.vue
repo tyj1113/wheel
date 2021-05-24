@@ -2,8 +2,12 @@
     <div>
 
       <t-cascader :source.sync="source" popover-height="200px" :selected.sync="selected"
-      :load-data="loadData"
+      :load-data="loadData" style="margin-bottom: 50px"
       ></t-cascader>
+<!--      <br>-->
+<!--      <t-cascader :source.sync="source" popover-height="200px" :selected.sync="selected"-->
+<!--                  :load-data="loadData"-->
+<!--      ></t-cascader>-->
 
     </div>
 </template>
@@ -26,7 +30,7 @@ function ajax (parentId = 0) {
       })
       // console.log(result)
       success(result)
-    }, 300)//模拟异步获取数据
+    }, 3000)//模拟异步获取数据
   })
 }
 export default {

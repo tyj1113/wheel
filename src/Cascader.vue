@@ -5,7 +5,7 @@
     </div>
     <div class="popoverWrapper" v-if="popoverVisible">
       <t-cascader-item :items="source" class="popover" :loadData="loadData"
-       :selected="selected" :height="popoverHeight"
+       :selected="selected" :height="popoverHeight" :loading-item="loadingItem"
         @update:selected="onUpdateSelected"></t-cascader-item>
     </div>
   </div>
@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       popoverVisible: false,
+      loadingItem: {},
     }
   },
   methods: {
@@ -66,14 +67,16 @@ export default {
         }
       }
       let updateSource = (result) => {//内部定义的updateSource 方法
+        this.loadingItem = {}
         let copy = JSON.parse(JSON.stringify(this.source))//深拷贝数据
         let toUpdate = complex(copy, lastItem.id)
         toUpdate.children = result//将下一级的数据添加到上一级的children属性里
         this.$emit('update:source', copy)// 通过自定义事件修改顶层数据
       }
-      if (!lastItem.isLeaf) {
-        this.loadData && this.loadData(lastItem, updateSource) // 回调:把别人传给我的函数调用一下
+      if (!lastItem.isLeaf && this.loadData) {
+        this.loadData(lastItem, updateSource) // 回调:把别人传给我的函数调用一下
         // 调回调的时候传一个函数,这个函数理论应该被调用
+        this.loadingItem = lastItem
       }
     },
     // onClickDocument (e) {
@@ -145,6 +148,7 @@ export default {
     display: flex;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
     margin-top: 8px;
+    z-index: 1;
   }
 }
 </style>
