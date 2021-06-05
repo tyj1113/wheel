@@ -16,14 +16,12 @@
 <script>
 import TSlides from './Slides'
 import TSlidesItem from './SlidesItem'
-
-
 export default {
   name: "demo",
   components: {TSlides, TSlidesItem},
   data () {
     return {
-      selected: 'undefined'
+      selected: undefined
     };
   },
 };
