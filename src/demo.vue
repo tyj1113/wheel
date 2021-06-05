@@ -10,25 +10,22 @@
       <TSlidesItem name="3">
         <div class="box">3</div>
       </TSlidesItem>
-      <TSlidesItem name="4">
-        <div class="box">4</div>
-      </TSlidesItem>
     </TSlides>
   </div>
 </template>
 <script>
 import TSlides from './Slides'
 import TSlidesItem from './SlidesItem'
+
+
 export default {
   name: "demo",
   components: {TSlides, TSlidesItem},
   data () {
     return {
-      selected: '2'
+      selected: 'undefined'
     };
   },
-  created () {
-  }
 };
 </script>
 <style>
@@ -40,7 +37,6 @@ export default {
   width: 100%;
   height: 350px;
   background: #ddd;
-  /*border: 1px solid red;*/
   display: flex;
   justify-content: center;
   align-items: center;
