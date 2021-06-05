@@ -9,14 +9,14 @@
       </div>
     </div>
     <div class="t-slides-dots">
-            <span @click="onClickPrev">
+            <span @click="onClickPrev" data-action="prev">
         <Icon name="left"></Icon>
       </span>
       <span v-for="n in childrenLength" :class="{active: selectedIndex === n-1}"
-            @click="select(n-1)" :key="n">
+            @click="select(n-1)" :key="n" :data-index="n-1">
         {{n}}
       </span>
-      <span @click="onClickNext">
+      <span @click="onClickNext" data-action="next">
         <Icon name="right"></Icon>
       </span>
     </div>
