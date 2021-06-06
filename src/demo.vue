@@ -1,43 +1,26 @@
 <template>
   <div>
-    <TSlides class="wrapper" width="300px" height="200px" :selected.sync="selected">
-      <TSlidesItem name="1">
-        <div class="box">1</div>
-      </TSlidesItem>
-      <TSlidesItem name="2">
-        <div class="box">2</div>
-      </TSlidesItem>
-      <TSlidesItem name="3">
-        <div class="box">3</div>
-      </TSlidesItem>
-    </TSlides>
+    <TNav :selected.sync="selected">
+      <TNavItem name="home">首页</TNavItem>
+      <TNavItem name="about">关于</TNavItem>
+      <TNavItem name="hire">招聘</TNavItem>
+    </TNav>
   </div>
 </template>
 <script>
-import TSlides from './Slides'
-import TSlidesItem from './SlidesItem'
+import TNav from './Nav.vue'
+import TNavItem from './NavItem.vue'
+import TSubNav from './SubNav.vue'
 export default {
   name: "demo",
-  components: {TSlides, TSlidesItem},
+  components: {TNav, TNavItem, TSubNav},
   data () {
     return {
-      selected: undefined
+      selected: ['home']
     };
   },
 };
 </script>
 <style>
 * {margin: 0; padding: 0; box-sizing: border-box;}
-.wrapper {
-  margin: 40px;
-}
-.box {
-  width: 100%;
-  height: 350px;
-  background: #ddd;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
-}
 </style>
