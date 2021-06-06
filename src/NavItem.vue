@@ -18,6 +18,10 @@ export default {
       selected: false
     }
   },
+  inject: ['root'],
+  created () {
+    this.root.addItem(this)
+  },
   methods: {
     onClick () {
       this.$emit('add:selected', this.name)
