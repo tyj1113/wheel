@@ -73,5 +73,6 @@ export default {
   border-bottom: 1px solid #eee;
   color: #333;
   cursor: default;
+  user-select: none;
 }
 </style>

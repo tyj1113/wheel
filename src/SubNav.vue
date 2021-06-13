@@ -1,7 +1,10 @@
 <template>
   <div class="t-sub-nav" :class="{active}" v-click-outside="close">
-    <span @click="onClick">
+    <span class="t-sub-nav-label" @click="onClick">
       <slot name="title"></slot>
+       <span class="t-sub-nav-icon" :class="{open}">
+        <Icon name="right"></Icon>
+      </span>
     </span>
     <div class="t-sub-nav-popover" v-show="open">
       <slot></slot>
@@ -11,9 +14,11 @@
 
 <script>
 import ClickOutside from './click-outside'
+import Icon from './Icon'
 
 export default {
   name: "SubNav",
+  components: {Icon},
   directives: {ClickOutside},
   inject: ['root'],
   props: {
@@ -64,10 +69,8 @@ export default {
       width: 100%;
     }
   }
-  > span {
-    padding: 10px 20px;
-    display: block;
-  }
+  &-label { padding: 10px 20px; display: block; }
+  &-icon { display: none; }
   &-popover {
     background: white;
     position: absolute;
@@ -82,9 +85,29 @@ export default {
     min-width: 8em;
   }
 }
-.t-sub-nav .t-sub-nav .t-sub-nav-popover {
-  top: 0;
-  left: 100%;
-  margin-left: 8px;
+.t-sub-nav .t-sub-nav {
+  &.active {
+    &::after {
+      display: none;
+    }
+  }
+  .t-sub-nav-popover {
+    top: 0;
+    left: 100%;
+    margin-left: 8px;
+  }
+  .t-sub-nav-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .t-sub-nav-icon {
+    transition: transform 250ms;
+    display: inline-flex; margin-left: 1em;
+    svg {fill: #666;}
+    &.open {
+      transform: rotate(180deg);
+    }
+  }
 }
 </style>
