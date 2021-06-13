@@ -1,7 +1,10 @@
 <template>
   <div>
     <TNav :selected.sync="selected" style="margin: 20px;margin-bottom: 500px;">
-      <TNavItem name="home">首页</TNavItem>
+      <TNavItem name="home">
+        <a href="https://jirengu.com" target="_blank">
+        首页
+      </a></TNavItem>
       <TSubNav name="about">
         <template slot="title">关于</template>
         <TNavItem name="culture">企业文化</TNavItem>

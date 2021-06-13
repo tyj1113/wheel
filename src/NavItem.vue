@@ -1,5 +1,5 @@
 <template>
-  <div class="t-nav-item" :class="{selected}" @click="onClick">
+  <div class="t-nav-item" :class="{selected, vertical}" @click="onClick">
     <slot></slot>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
       selected: false
     }
   },
-  inject: ['root'],
+  inject: ['root', 'vertical'],
   created () {
     this.root.addItem(this)
   },
@@ -36,6 +36,7 @@ export default {
 .t-nav-item {
   padding: 10px 20px;
   position: relative;
+&:not(.vertical) {
   &.selected {
     &::after {
       content: '';
@@ -45,9 +46,19 @@ export default {
       border-bottom: 2px solid #4a90e2;
       width: 100%;
     }
+    }
+  }
+  &.vertical {
+    &.selected {
+      color: #4a90e2;
+    }
   }
 }
-.t-sub-nav .t-nav-item {
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.t-sub-nav .t-nav-item:not(.vertical) {
   &.selected {
     color: #333;
     background: #eee;
