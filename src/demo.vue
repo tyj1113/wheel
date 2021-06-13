@@ -1,10 +1,10 @@
 <template>
   <div>
-    <TNav :selected.sync="selected" style="margin: 20px;margin-bottom: 500px;">
+    <TNav :selected.sync="selected" style="margin: 20px;margin-bottom: 500px;"
+    @update:selected="onChange">
       <TNavItem name="home">
-        <a href="https://jirengu.com" target="_blank">
         首页
-      </a></TNavItem>
+      </TNavItem>
       <TSubNav name="about">
         <template slot="title">关于</template>
         <TNavItem name="culture">企业文化</TNavItem>
@@ -54,9 +54,24 @@ export default {
   components: {TNav, TNavItem, TSubNav},
   data () {
     return {
-      selected: ['home']
+      selected: 'home'
     };
   },
+  methods: {
+    onChange (selected) {
+      console.log(selected)
+      if (selected.indexOf('home') >= 0) {
+        alert('hi1')
+      }
+    }
+  },
+  watch: {
+    selected (newValue) {
+      if (newValue === 'home') {
+        alert('hi2')
+      }
+    }
+  }
 };
 </script>
 <style>
