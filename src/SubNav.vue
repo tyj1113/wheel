@@ -6,9 +6,19 @@
         <Icon name="right"></Icon>
       </span>
     </span>
-    <div class="t-sub-nav-popover" v-show="open">
-      <slot></slot>
-    </div>
+    <template v-if="vertical">
+      <transition @enter="enter" @leave="leave" @after-leave="afterLeave"
+                  @after-enter="afterEnter">
+        <div class="t-sub-nav-popover" v-show="open" :class="{vertical}">
+          <slot></slot>
+        </div>
+      </transition>
+    </template>
+    <template v-else>
+      <div class="t-sub-nav-popover" v-show="open">
+        <slot></slot>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -20,7 +30,7 @@ export default {
   name: "SubNav",
   components: {Icon},
   directives: {ClickOutside},
-  inject: ['root'],
+  inject: ['root', 'vertical'],
   props: {
     name: {
       type: String,
@@ -38,6 +48,30 @@ export default {
     }
   },
   methods: {
+    enter (el, done) {
+      let {height} = el.getBoundingClientRect()
+      el.style.height = 0
+      el.getBoundingClientRect()
+      el.style.height = `${height}px`
+      el.addEventListener('transitionend', () => {
+        done()
+      })
+    },
+    afterEnter (el) {
+      el.style.height = 'auto'
+    },
+    leave: function (el, done) {
+      let {height} = el.getBoundingClientRect()
+      el.style.height = `${height}px`
+      el.getBoundingClientRect()
+      el.style.height = 0
+      el.addEventListener('transitionend', () => {
+        done()
+      })
+    },
+    afterLeave: function (el) {
+      el.style.height = 'auto'
+    },
     onClick () {
       this.open = !this.open
     },
@@ -83,6 +117,14 @@ export default {
     font-size:14px;
     color: #666;
     min-width: 8em;
+    &.vertical {
+      position: static;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      transition: height 250ms;
+      overflow: hidden;
+    }
   }
 }
 .t-sub-nav .t-sub-nav {
