@@ -24,6 +24,8 @@ export default {
   },
   methods: {
     onClick () {
+      this.root.namePath = []
+      this.$parent.updateNamePath && this.$parent.updateNamePath()
       this.$emit('add:selected', this.name)
     }
   }
@@ -33,8 +35,25 @@ export default {
 <style scoped lang="scss">
 .t-nav-item {
   padding: 10px 20px;
+  position: relative;
   &.selected {
-    background: red;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-bottom: 2px solid #4a90e2;
+      width: 100%;
+    }
+  }
+}
+.t-sub-nav .t-nav-item {
+  &.selected {
+    color: #333;
+    background: #eee;
+    &::after {
+      display: none;
+    }
   }
 }
 </style>

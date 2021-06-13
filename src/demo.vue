@@ -2,15 +2,15 @@
   <div>
     <TNav :selected.sync="selected">
       <TNavItem name="home">首页</TNavItem>
-      <TSubNav>
+      <TSubNav name="about">
         <template slot="title">关于</template>
         <TNavItem name="culture">企业文化</TNavItem>
         <TNavItem name="developers">开发团队</TNavItem>
-        <TSubNav>
+        <TSubNav name="contacts">
           <template slot="title">联系方式</template>
           <TNavItem name="wechat">微信</TNavItem>
           <TNavItem name="qq">QQ</TNavItem>
-          <TSubNav>
+          <TSubNav name="phone">
             <template slot="title">手机</template>
             <TNavItem name="cm">移动</TNavItem>
             <TNavItem name="cu">联通</TNavItem>

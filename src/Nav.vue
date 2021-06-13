@@ -24,7 +24,8 @@ export default {
   },
   data () {
     return {
-      items: []
+      items: [],
+      namePath: []
     }
   },
   mounted () {
@@ -36,8 +37,6 @@ export default {
   },
   methods: {
     addItem (vm) {
-      console.log('addItem')
-      console.log(vm)
       this.items.push(vm)
     },
     updateChildren () {
@@ -71,6 +70,8 @@ export default {
 <style scoped lang="scss">
 .t-nav {
   display: flex;
-  border: 1px solid red;
+  border-bottom: 1px solid #eee;
+  color: #333;
+  cursor: default;
 }
 </style>
