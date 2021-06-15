@@ -1,79 +1,22 @@
+
 <template>
-  <div>
-    <TNav :selected.sync="selected" style="margin: 20px;margin-bottom: 500px;"
-    @update:selected="onChange">
-      <TNavItem name="home">
-        首页
-      </TNavItem>
-      <TSubNav name="about">
-        <template slot="title">关于</template>
-        <TNavItem name="culture">企业文化</TNavItem>
-        <TNavItem name="developers">开发团队</TNavItem>
-        <TSubNav name="contacts">
-          <template slot="title">联系方式</template>
-          <TNavItem name="wechat">微信</TNavItem>
-          <TNavItem name="qq">QQ</TNavItem>
-          <TSubNav name="phone">
-            <template slot="title">手机</template>
-            <TNavItem name="cm">移动</TNavItem>
-            <TNavItem name="cu">联通</TNavItem>
-            <TNavItem name="cn">电信</TNavItem>
-          </TSubNav>
-        </TSubNav>
-      </TSubNav>
-      <TNavItem name="hire">招聘</TNavItem>
-    </TNav>
-    <TNav :selected.sync="selected" vertical style="width: 200px; margin: 20px;">
-      <TNavItem name="home">首页</TNavItem>
-      <TSubNav name="about">
-        <template slot="title">关于</template>
-        <TNavItem name="culture">企业文化</TNavItem>
-        <TNavItem name="developers">开发团队</TNavItem>
-        <TSubNav name="contacts">
-          <template slot="title">联系方式</template>
-          <TNavItem name="wechat">微信</TNavItem>
-          <TNavItem name="qq">QQ</TNavItem>
-          <TSubNav name="phone">
-            <template slot="title">手机</template>
-            <TNavItem name="cm">移动</TNavItem>
-            <TNavItem name="cu">联通</TNavItem>
-            <TNavItem name="cn">电信</TNavItem>
-          </TSubNav>
-        </TSubNav>
-      </TSubNav>
-      <TNavItem name="hire">招聘</TNavItem>
-    </TNav>
+  <div style="margin: 20px;">
+    <Pager :total-page="10" :current-page.sync="currentPage"></Pager>
   </div>
 </template>
 <script>
-import TNav from './Nav.vue'
-import TNavItem from './NavItem.vue'
-import TSubNav from './SubNav.vue'
+import Pager from './Pager'
 export default {
   name: "demo",
-  components: {TNav, TNavItem, TSubNav},
+  components: {Pager},
   data () {
     return {
-      selected: 'home'
-    };
-  },
-  methods: {
-    onChange (selected) {
-      console.log(selected)
-      if (selected.indexOf('home') >= 0) {
-        alert('hi1')
-      }
-    }
-  },
-  watch: {
-    selected (newValue) {
-      if (newValue === 'home') {
-        alert('hi2')
-      }
+      currentPage: 1
     }
   }
 };
 </script>
 <style>
 * {margin: 0; padding: 0; box-sizing: border-box;}
+body {background: white;}
 </style>
