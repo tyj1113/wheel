@@ -3,7 +3,10 @@
   <div style="margin: 20px;">
 <!--    <Pager :total-page="10" :current-page.sync="currentPage"></Pager>-->
     <div style="margin: 20px;">
-      <Table :columns="columns" :data-source="dataSource" bordered :selected-items.sync="selected"></Table>
+      <Table :columns="columns" :data-source="dataSource" bordered :selected-items.sync="selected"
+             :order-by.sync="orderBy"
+             @update:orderBy="x" :loading="loading"
+      ></Table>
     </div>
     <div style="margin: 20px;" >
       <Table :columns="columns" :data-source="dataSource"   :striped="false"
@@ -26,6 +29,10 @@ export default {
         {text: '姓名', field: 'name'},
         {text: '分数', field: 'score'},
       ],
+      orderBy: { // true - 开启排序，但是不确定asc desc
+        score: 'desc'
+      },
+      loading: false,
       dataSource: [
         {id: 1, name: '方方', score: 100},
         {id: 2, name: '圆圆', score: 99},
@@ -36,6 +43,16 @@ export default {
         {id: 7, name: '蜘蛛侠', score: 100},
         {id: 8, name: '钢铁侠', score: 99},
       ]
+    }
+  },
+  methods:{
+    x () {
+      this.loading = true
+      setTimeout(() => {
+        this.dataSource = this.dataSource.sort((a, b) => a.score - b.score)
+        console.log(this.dataSource)
+        this.loading = false
+      }, 500)
     }
   }
 };

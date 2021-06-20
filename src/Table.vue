@@ -3,10 +3,16 @@
     <table class="t-table" :class="{bordered, compact, striped: striped}">
       <thead>
       <tr>
-        <th><input type="checkbox" @change="onChangeAllItems" ref="allChecked"/></th>
+        <th><input type="checkbox" @change="onChangeAllItems" ref="allChecked" :checked="areAllItemsSelected" /></th>
         <th v-if="numberVisible">#</th>
         <th v-for="column in columns" :key="column.field">
-          {{column.text}}
+          <div class="t-table-header">
+            {{column.text}}
+            <span v-if="column.field in orderBy" class="t-table-sorter" @click="changeOrderBy(column.field)">
+              <Icon name="up" :class="{active: orderBy[column.field] === 'asc'}"/>
+              <Icon name="down" :class="{active: orderBy[column.field] === 'desc'}"/>
+            </span>
+          </div>
         </th>
       </tr>
       </thead>
@@ -23,13 +29,27 @@
       </tr>
       </tbody>
     </table>
+    <div v-if="loading" class="t-table-loading">
+      <Icon name="loading"/>
+    </div>
   </div>
 </template>
 
 <script>
+import Icon from "@/Icon";
+
 export default {
   name: "Table",
+  components: {Icon},
   props: {
+    orderBy: {
+      type: Object,
+      default: () => ({}),
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
     striped: {
       type: Boolean,
       default: true
@@ -66,11 +86,35 @@ export default {
     selectedItems () {
       if (this.selectedItems.length === this.dataSource.length) {
         this.$refs.allChecked.indeterminate = false
-        this.$refs.allChecked.checked=true
       } else this.$refs.allChecked.indeterminate = this.selectedItems.length !== 0;
     }
   },
+  computed: {
+    areAllItemsSelected () {
+      const a = this.dataSource.map(item => item.id).sort()
+      const b = this.selectedItems.map(item => item.id).sort()
+      if (a.length !== b.length) { return false }
+      let equal = true
+      for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) {
+        equal = false
+        break
+      }
+      return equal
+    }
+  },
   methods: {
+    changeOrderBy (key) {
+      const copy = JSON.parse(JSON.stringify(this.orderBy))
+      let oldValue = copy[key]
+      if (oldValue === 'asc') {
+        copy[key] = 'desc'
+      } else if (oldValue === 'desc') {
+        copy[key] = true
+      } else {
+        copy[key] = 'asc'
+      }
+      this.$emit('update:orderBy', copy)
+    },
     inSelectedItems (item) {
       return this.selectedItems.filter(i => i.id === item.id).length > 0
     },
@@ -128,5 +172,51 @@ $grey: darken($grey, 10%);
       }
     }
   }
+  &-sorter {
+    display: inline-flex;
+    flex-direction: column;
+    margin: 0 4px;
+    cursor: pointer;
+    svg {
+      width: 10px;
+      height: 10px;
+      fill: $grey;
+      &.active {
+        fill: red;
+      }
+      &:first-child {
+        position: relative;
+        bottom: -1px;
+      }
+      &:nth-child(2) {
+        position: relative;
+        top: -1px;
+      }
+    }
+  }
+  &-header {
+    display: flex;
+    align-items: center;
+  }
+  &-wrapper {
+    position: relative;
+  }
+  &-loading {
+    background: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      width: 50px;
+      height: 50px;
+      animation: spin 2s infinite linear;
+    }
+  }
+
 }
 </style>
