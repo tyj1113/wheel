@@ -148,7 +148,7 @@ export default {
         let wrapper = this.$refs.tableWrapper
         scrollWidth = wrapper.offsetWidth - wrapper.clientWidth
       }
-      let width2 = width + parseInt(paddingRight) + parseInt(paddingRight) + parseInt(borderLeft) + parseInt(borderRight)
+      let width2 = width + parseInt(paddingLeft) + parseInt(paddingRight) + parseInt(borderLeft) + parseInt(borderRight)
       let theadWidth = width2 + scrollWidth
       this.$refs.actionsHeader.style.width = theadWidth + 'px'
       this.$refs.actions.map(div => {
