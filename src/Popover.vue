@@ -47,7 +47,8 @@ export default {
       this.$refs.popover.addEventListener('mouseleave', this.close)
     }
   },
-  destroyed() {
+  beforeDestroyed() {
+    this.putBackContent()
     if (this.trigger === 'click') {
       this.$refs.popover.removeEventListener('click', this.onClick)
     } else {
@@ -56,6 +57,11 @@ export default {
     }
   },
   methods: {
+    putBackContent(){
+      const {contentWrapper, popover} = this.$refs
+      if(!contentWrapper){return}
+      popover.appendChild(contentWrapper)
+    },
     getPosition() {
       this.$nextTick(() => {
         const {contentWrapper, triggerWrapper} = this.$refs
