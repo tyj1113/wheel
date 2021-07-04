@@ -1,48 +1,167 @@
 <template>
-  <div style="margin: 20px;">
-    {{error}}
-    <br>
-    {{fileList}}
-    <div>只能上传 300kb 以内的 png、jpeg 文件</div>
-    <Uploader accept="image/*" method="POST" action="http://127.0.0.1:3000/upload" name="file"
-                @upload:fileList="y"
-                :parseResponse="parseResponse" :file-list.sync="fileList" @error="error=$event" :size-limit="1024*1024">
-      <Button icon="LocalUpload">上传</Button>
-    </Uploader>
+
+  <div style="display: flex; justify-content: center;">
+    <div style="width: 600px; border: 1px solid black;">
+      <p>段落1</p>
+      <p>段落2</p>
+      <p>段落3</p>
+      <p>段落4</p>
+      <p>段落5</p>
+      <p>段落6</p>
+      <p>段落7</p>
+      <p>段落8</p>
+      <p>段落9</p>
+      <Sticky :distance="100">
+        <div style="border: 1px solid red; ">
+          <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimage.biaobaiju.com%2Fuploads%2F20180211%2F01%2F1518283524-uFpIvUadXE.jpg&refer=http%3A%2F%2Fimage.biaobaiju.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1627989953&t=d35f9e8bb70e74aac7750d2fbc7541c9" alt="">
+        </div>
+      </Sticky>
+      <p>段落1</p>
+      <p>段落2</p>
+      <p>段落3</p>
+      <p>段落4</p>
+      <p>段落5</p>
+      <p>段落6</p>
+      <p>段落7</p>
+      <p>段落8</p>
+      <p>段落9</p>
+      <p>段落10</p>
+      <p>段落11</p>
+      <p>段落12</p>
+      <p>段落13</p>
+      <p>段落14</p>
+      <p>段落15</p>
+      <p>段落16</p>
+      <p>段落17</p>
+      <p>段落18</p>
+      <p>段落19</p>
+      <p>段落20</p>
+      <p>段落21</p>
+      <p>段落22</p>
+      <p>段落23</p>
+      <p>段落24</p>
+      <p>段落25</p>
+      <p>段落26</p>
+      <p>段落27</p>
+      <p>段落28</p>
+      <p>段落29</p>
+      <p>段落30</p>
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+      <p>4</p>
+      <p>5</p>
+      <p>6</p>
+      <p>7</p>
+      <p>8</p>
+      <p>9</p>
+      <p>10</p>
+      <p>11</p>
+      <p>12</p>
+      <p>13</p>
+      <p>14</p>
+      <p>15</p>
+      <p>16</p>
+      <p>17</p>
+      <p>18</p>
+      <p>19</p>
+      <p>20</p>
+      <p>21</p>
+      <p>22</p>
+      <p>23</p>
+      <p>24</p>
+      <p>25</p>
+      <p>26</p>
+      <p>27</p>
+      <p>28</p>
+      <p>29</p>
+      <p>30</p>
+      <p>31</p>
+      <p>32</p>
+      <p>33</p>
+      <p>34</p>
+      <p>35</p>
+      <p>36</p>
+      <p>37</p>
+      <p>38</p>
+      <p>39</p>
+      <p>40</p>
+      <p>41</p>
+      <p>42</p>
+      <p>43</p>
+      <p>44</p>
+      <p>45</p>
+      <p>46</p>
+      <p>47</p>
+      <p>48</p>
+      <p>49</p>
+      <p>50</p>
+      <p>51</p>
+      <p>52</p>
+      <p>53</p>
+      <p>54</p>
+      <p>55</p>
+      <p>56</p>
+      <p>57</p>
+      <p>58</p>
+      <p>59</p>
+      <p>60</p>
+      <p>61</p>
+      <p>62</p>
+      <p>63</p>
+      <p>64</p>
+      <p>65</p>
+      <p>66</p>
+      <p>67</p>
+      <p>68</p>
+      <p>69</p>
+      <p>70</p>
+      <p>71</p>
+      <p>72</p>
+      <p>73</p>
+      <p>74</p>
+      <p>75</p>
+      <p>76</p>
+      <p>77</p>
+      <p>78</p>
+      <p>79</p>
+      <p>80</p>
+      <p>81</p>
+      <p>82</p>
+      <p>83</p>
+      <p>84</p>
+      <p>85</p>
+      <p>86</p>
+      <p>87</p>
+      <p>88</p>
+      <p>89</p>
+      <p>90</p>
+      <p>91</p>
+      <p>92</p>
+      <p>93</p>
+      <p>94</p>
+      <p>95</p>
+      <p>96</p>
+      <p>97</p>
+      <p>98</p>
+      <p>99</p>
+      <p>100</p>
+    </div>
   </div>
+
 </template>
 
 <script>
-import Uploader from './Uploader'
-import Button from './Button'
+import Sticky from './Sticky'
 export default {
   name: "demo",
-  components: {Uploader, Button},
-  data () {
-    return {
-      fileList: [],
-      error: ''
-    }
-  },
-  methods: {
-    alert (error) {
-      window.alert(error || '上传失败')
-    },
-    parseResponse (response) {
-      console.log(response);
-      let object = JSON.parse(response)
-      let url = `http://127.0.0.1:3000/preview/${object.id}`
-      return url
-    },
-    y(newFileList){
-      this.fileList = newFileList
-    }
-  }
+  components: {Sticky},
 };
 </script>
 <style>
 * {margin: 0; padding: 0; box-sizing: border-box;}
 body {background: white;}
+img {max-width: 100%;}
 </style>
 <style scoped lang="scss">
 </style>
