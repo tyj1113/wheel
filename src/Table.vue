@@ -17,7 +17,7 @@
             </span>
             </div>
           </th>
-          <th ref="actionsHeader" v-if="$scopedSlots.default"></th>
+<!--          <th ref="actionsHeader" v-if="$scopedSlots.default"></th>-->
         </tr>
         </thead>
         <tbody>
@@ -36,13 +36,20 @@
               /></td>
             <td :style="{width: '50px'}" v-if="numberVisible">{{ index + 1 }}</td>
             <template v-for="column in columns">
-              <td :style="{width: column.width + 'px'}" :key="column.field">{{ item[column.field] }}</td>
+              <td :style="{width: column.width + 'px'}" :key="column.field">
+                <template v-if="column.render">
+                  <vnodes :vnodes="column.render({value: item[column.field]})"></vnodes>
+                </template>
+                <template v-else>
+                  {{item[column.field]}}
+                </template>
+              </td>
             </template>
-            <td v-if="$scopedSlots.default">
-              <div ref="actions" style="display: inline-block;">
-                <slot :item="item"></slot>
-              </div>
-            </td>
+<!--            <td v-if="$scopedSlots.default">-->
+<!--              <div ref="actions" style="display: inline-block;">-->
+<!--                <slot :item="item"></slot>-->
+<!--              </div>-->
+<!--            </td>-->
           </tr>
           <tr v-if="inExpendedIds(item.id)" :key="`${item.id}-expend`">
             <td :colspan="columns.length + expendedCellColSpan">
@@ -64,10 +71,16 @@ import Icon from "@/Icon";
 
 export default {
   name: "Table",
-  components: {Icon},
+  components: {Icon,
+    vnodes: {
+      functional: true,
+      render: (h, context) => context.props.vnodes
+    }
+    },
   data() {
     return {
-      expendedIds: []
+      expendedIds: [],
+      columns: []
     }
   },
   props: {
@@ -101,10 +114,6 @@ export default {
       type: Boolean,
       default: false
     },
-    columns: {
-      type: Array,
-      required: true
-    },
     dataSource: {
       type: Array,
       required: true,
@@ -122,39 +131,45 @@ export default {
     }
   },
   mounted() {
+    this.columns = this.$slots.default.map(node => {
+      let {text, field, width} = node.componentOptions.propsData
+      let render = node.data.scopedSlots && node.data.scopedSlots.default
+      return {text, field, width, render}
+    })
+
     let table2 = this.$refs.table.cloneNode(false)
     this.table2 = table2
     table2.classList.add('t-table-copy')
-
     let tHead = this.$refs.table.children[0]
     let {height} = tHead.getBoundingClientRect()
     this.$refs.tableWrapper.style.marginTop = height + 'px'
     this.$refs.tableWrapper.style.height = this.height - height + 'px'
     table2.appendChild(tHead)
     this.$refs.wrapper.appendChild(table2)
-    if (this.$scopedSlots.default) {
-      let div = this.$refs.actions[0]//自定义列第一行单元格
-      let {width} = div.getBoundingClientRect()
-      let parent = div.parentNode
-      let styles = getComputedStyle(parent)
-      let paddingLeft = styles.getPropertyValue('padding-left')
-      let paddingRight = styles.getPropertyValue('padding-right')
-      let borderLeft = styles.getPropertyValue('border-left-width')
-      let borderRight = styles.getPropertyValue('border-right-width')
-      let {height} = this.$refs.table.getBoundingClientRect()
 
-      let scrollWidth = 0
-      if (height > this.height) {
-        let wrapper = this.$refs.tableWrapper
-        scrollWidth = wrapper.offsetWidth - wrapper.clientWidth
-      }
-      let width2 = width + parseInt(paddingLeft) + parseInt(paddingRight) + parseInt(borderLeft) + parseInt(borderRight)
-      let theadWidth = width2 + scrollWidth
-      this.$refs.actionsHeader.style.width = theadWidth + 'px'
-      this.$refs.actions.map(div => {
-        div.parentNode.style.width = width2 + 'px'
-      })
-    }
+    // if (this.$scopedSlots.default) {
+    //   let div = this.$refs.actions[0]//自定义列第一行单元格
+    //   let {width} = div.getBoundingClientRect()
+    //   let parent = div.parentNode
+    //   let styles = getComputedStyle(parent)
+    //   let paddingLeft = styles.getPropertyValue('padding-left')
+    //   let paddingRight = styles.getPropertyValue('padding-right')
+    //   let borderLeft = styles.getPropertyValue('border-left-width')
+    //   let borderRight = styles.getPropertyValue('border-right-width')
+    //   let {height} = this.$refs.table.getBoundingClientRect()
+    //
+    //   let scrollWidth = 0
+    //   if (height > this.height) {
+    //     let wrapper = this.$refs.tableWrapper
+    //     scrollWidth = wrapper.offsetWidth - wrapper.clientWidth
+    //   }
+    //   let width2 = width + parseInt(paddingLeft) + parseInt(paddingRight) + parseInt(borderLeft) + parseInt(borderRight)
+    //   let theadWidth = width2 + scrollWidth
+    //   this.$refs.actionsHeader.style.width = theadWidth + 'px'
+    //   this.$refs.actions.map(div => {
+    //     div.parentNode.style.width = width2 + 'px'
+    //   })
+    // }
   },
   beforeDestroy() {
     this.table2.remove()
@@ -244,7 +259,9 @@ $grey: darken($grey, 10%);
   border-collapse: collapse;
   border-spacing: 0;
   border-bottom: 1px solid $grey;
-
+  &::-webkit-scrollbar{
+    width:0;
+  }
   &.bordered {
     border: 1px solid $grey;
 
@@ -264,7 +281,8 @@ $grey: darken($grey, 10%);
     text-align: left;
     padding: 8px;
   }
-
+  th:last-child .t-table-header{
+  }
   &.striped {
     tbody {
       > tr {
@@ -350,5 +368,4 @@ $grey: darken($grey, 10%);
     text-align: center;
   }
 }
-
 </style>
