@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper" >
-      <input  type="text" :value="value" :disabled="disabled" :readonly="readonly" :class="{error}"
+      <input  ref="input" type="text" :value="value" :disabled="disabled" :readonly="readonly" :class="{error}"
               @change="$emit('change',$event.target.value)"
               @blur="$emit('blur',$event.target.value)"
               @input="$emit('input',$event.target.value)"
@@ -20,7 +20,7 @@ name: "Input",
   components: {Icon},
   props: {
   value:{
-    type:String
+    type: [String, Date]
   },
     disabled:{
     type:Boolean,
@@ -32,6 +32,11 @@ name: "Input",
     },
     error: {
       type: String
+    }
+  },
+  methods:{
+    setRawValue(value){
+      this.$refs.input.value = value
     }
   }
 }

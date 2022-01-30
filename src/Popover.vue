@@ -101,19 +101,24 @@ export default {
       })
     },
     documentClick(event) {
-      if (this.$refs.contentWrapper && this.$refs.contentWrapper.contains(event.target)) {
-        return
-      }
-      if (this.$refs.triggerWrapper && this.$refs.triggerWrapper.contains(event.target)) {
-        return
-      }
-      clearTimeout(this.timer)
-      this.visible = false
-      document.removeEventListener('click', this.documentClick)
+        if (this.$refs.contentWrapper && this.$refs.contentWrapper.contains(event.target)) {
+          return
+        }
+        if (this.$refs.triggerWrapper && this.$refs.triggerWrapper.contains(event.target)) {
+          return
+        }
+        if(this.container && this.container.contains(event.target)){
+          return
+        }
+        clearTimeout(this.timer)
+        console.log(777);
+        this.visible = false
+        document.removeEventListener('click', this.documentClick)
     },
     open() {
       clearTimeout(this.timer)
       this.visible = true
+      this.$emit('open')
       this.getPosition()
       document.addEventListener('click', this.documentClick)
     },
@@ -121,10 +126,12 @@ export default {
       if (this.trigger === 'hover') {
         this.timer = setTimeout(() => {
           this.visible = false
+          this.$emit('close')
           document.removeEventListener('click', this.documentClick)
         }, 1500)
       } else {
         this.visible = false
+        this.$emit('close')
         document.removeEventListener('click', this.documentClick)
       }
     },
@@ -152,7 +159,7 @@ export default {
   filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
   background: white;
   padding: .5em 1em;
-  max-width: 20em;
+  //max-width: 20em;
   word-break: break-word;
 
   &::before, &::after {

@@ -1,6 +1,6 @@
 <template>
   <div class="page" style="position:relative;">
-    <DatePicker></DatePicker>
+    <DatePicker :value="date" @input="date=$event"></DatePicker>
     <p>其他内容</p>
   </div>
 </template>
@@ -15,7 +15,9 @@ export default {
   name: "demo",
   components: {DatePicker},
   data () {
-    return {}
+    return {
+      date:new Date()
+    }
   },
 };
 </script>
